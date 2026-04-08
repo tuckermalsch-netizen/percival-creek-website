@@ -577,6 +577,18 @@ footer { background:var(--bark); color:var(--cream); padding:80px 80px 40px; }
   .btn-primary,
   .btn-outline,
   .btn-outline-dark { padding: 13px 24px !important; font-size: 11px !important; }
+
+  /* SERVICES TABLE — make scrollable on mobile */
+  .services-section { padding: 0 24px 48px !important; }
+  .services-table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .services-table thead,
+  .services-table tbody,
+  .services-table tr,
+  .services-table th,
+  .services-table td { white-space: nowrap; }
+  .services-table td:first-child { white-space: normal; min-width: 140px; }
+  .services-table th,
+  .services-table td { padding: 16px 14px !important; font-size: 12px !important; }
 }
 
 @media (max-width: 480px) {
