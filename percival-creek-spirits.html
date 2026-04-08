@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spirits — Percival Creek Distilling</title>
+<meta name="description" content="Small-batch spirits from Percival Creek Distilling in Tumwater, WA. Lavender Gin, London Dry Gin, and Small Batch Vodka handcrafted by SPSCC students on copper pot stills.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Karla:wght@300;400;500;600;700&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root { --forest:#1e3a22; --forest-light:#2c5430; --moss:#4a7c59; --gold:#c8932a; --gold-light:#e8b84b; --cream:#f5efe3; --cream-dark:#ede3d0; --bark:#3d2b1a; --mist:#8aab94; --white:#fdfaf5; --gray:#7a6a58; --copper:#b5651d; --copper-light:#d4872a; --steel:#2a3a3f; }
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { font-family:'Karla',sans-serif; background:var(--white); color:var(--bark); overflow-x:hidden; }
+.announce { background:var(--steel); color:var(--gold-light); text-align:center; padding:10px 20px; font-size:13px; letter-spacing:0.12em; font-weight:600; text-transform:uppercase; }
+nav { position:sticky; top:0; z-index:100; background:var(--white); border-bottom:1px solid rgba(30,58,34,0.1); display:flex; align-items:center; justify-content:space-between; padding:0 48px; height:72px; }
+.nav-logo { display:flex; flex-direction:column; line-height:1; text-decoration:none; }
+.nav-logo-top { font-family:'Cinzel',serif; font-size:18px; font-weight:700; color:var(--forest); letter-spacing:0.08em; }
+.nav-logo-sub { font-size:10px; letter-spacing:0.25em; color:var(--gold); text-transform:uppercase; font-weight:600; margin-top:2px; }
+.nav-links { display:flex; gap:32px; list-style:none; }
+.nav-links a { text-decoration:none; color:var(--bark); font-size:13px; letter-spacing:0.1em; text-transform:uppercase; font-weight:600; transition:color 0.2s; position:relative; }
+.nav-links a::after { content:''; position:absolute; bottom:-4px; left:0; width:0; height:2px; background:var(--gold); transition:width 0.3s; }
+.nav-links a:hover { color:var(--forest); } .nav-links a:hover::after, .nav-links a.active::after { width:100%; } .nav-links a.active { color:var(--forest); }
+.nav-btn { background:var(--forest); color:var(--cream); border:none; padding:10px 22px; font-family:'Karla',sans-serif; font-size:12px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; cursor:pointer; transition:background 0.2s; }
+.nav-btn:hover { background:var(--forest-light); }
+.nav-hamburger { display:none; }
+.nav-mobile-menu { display:none; }
+.section-eyebrow { font-size:11px; letter-spacing:0.3em; text-transform:uppercase; color:var(--gold); font-weight:700; margin-bottom:16px; display:flex; align-items:center; gap:12px; }
+.section-eyebrow::before { content:''; display:block; width:32px; height:1px; background:var(--gold); flex-shrink:0; }
+.section-title { font-family:'Playfair Display',serif; font-size:clamp(32px,4vw,54px); font-weight:700; color:var(--forest); line-height:1.1; letter-spacing:-0.02em; }
+.section-title em { font-style:italic; color:var(--copper); }
+.reveal { opacity:1; transform:translateY(0); transition:opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity:1; transform:translateY(0); }
+.btn-primary { background:var(--gold); color:var(--forest); padding:16px 36px; font-family:'Karla',sans-serif; font-size:13px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; border:none; cursor:pointer; transition:all 0.25s; text-decoration:none; display:inline-block; }
+.btn-primary:hover { background:var(--gold-light); transform:translateY(-2px); box-shadow:0 8px 24px rgba(200,147,42,0.35); }
+.btn-outline { background:transparent; color:var(--white); padding:15px 34px; border:1.5px solid rgba(255,255,255,0.4); font-family:'Karla',sans-serif; font-size:13px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; cursor:pointer; transition:all 0.25s; text-decoration:none; display:inline-block; }
+.btn-outline:hover { background:rgba(255,255,255,0.1); border-color:rgba(255,255,255,0.7); }
+.btn-outline-dark { background:transparent; color:var(--forest); padding:15px 34px; border:1.5px solid var(--forest); font-family:'Karla',sans-serif; font-size:13px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; cursor:pointer; transition:all 0.25s; text-decoration:none; display:inline-block; }
+.btn-outline-dark:hover { background:var(--forest); color:var(--cream); }
+
+/* HERO - copper/dark steel vibe for distillery */
+.collection-hero { position:relative; height:80vh; min-height:560px; overflow:hidden; display:flex; align-items:flex-end; padding-bottom:80px; }
+.collection-hero-bg {
+  position:absolute; inset:0;
+  background: linear-gradient(155deg, rgba(42,58,63,0.88) 0%, rgba(30,58,34,0.45) 45%, rgba(61,43,26,0.85) 100%),
+    url('new_brewhouse_wide.jpg') center 30%/cover no-repeat;
+  animation: hZoom 25s ease-in-out infinite alternate;
+}
+@keyframes hZoom { from{transform:scale(1)} to{transform:scale(1.04)} }
+.collection-hero::after { content:''; position:absolute; bottom:-2px; left:0; right:0; height:100px; background:var(--white); clip-path:polygon(0 60%, 100% 0, 100% 100%, 0 100%); }
+.collection-hero-content { position:relative; z-index:2; padding:0 80px; animation:fadeUp 1s ease both; }
+@keyframes fadeUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+.breadcrumb { font-size:11px; letter-spacing:0.25em; text-transform:uppercase; color:var(--gold-light); font-weight:600; margin-bottom:20px; opacity:0.8; }
+.collection-hero h1 { font-family:'Playfair Display',serif; font-size:clamp(56px,9vw,108px); font-weight:900; color:var(--white); line-height:0.9; letter-spacing:-0.03em; }
+.collection-hero h1 em { font-style:italic; color:var(--gold-light); display:block; }
+.collection-hero h1 small { display:block; font-size:0.38em; letter-spacing:0.25em; font-style:normal; font-weight:400; color:rgba(245,239,227,0.6); text-transform:uppercase; margin-top:12px; font-family:'Karla',sans-serif; }
+
+/* DISTILLERY INTRO */
+.distillery-intro { display:grid; grid-template-columns:1fr 1fr; min-height:380px; }
+.distillery-intro-image {
+  background: url('new_vendome_plate.jpg') center/cover;
+  position:relative;
+}
+.distillery-intro-image::before {
+  content:''; position:absolute; inset:0;
+  background:linear-gradient(135deg, rgba(42,58,63,0.3), rgba(42,58,63,0.05));
+}
+.distillery-intro-text { background:var(--steel); padding:72px; display:flex; flex-direction:column; justify-content:center; }
+.distillery-intro-text .section-eyebrow { color:var(--gold); }
+.distillery-intro-text .section-eyebrow::before { background:var(--gold); }
+.distillery-intro-text .section-title { color:var(--white); margin:12px 0 24px; font-size:clamp(28px,3vw,42px); }
+.distillery-intro-text .section-title em { color:var(--copper-light); }
+.distillery-intro-text p { font-size:15px; color:rgba(245,239,227,0.7); line-height:1.8; font-weight:300; }
+.distillery-stats { display:flex; gap:32px; margin-top:36px; padding-top:32px; border-top:1px solid rgba(255,255,255,0.08); }
+.dstat { text-align:center; }
+.dstat .num { font-family:'Playfair Display',serif; font-size:28px; font-weight:900; font-style:italic; color:var(--copper-light); line-height:1; }
+.dstat .lbl { font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:rgba(245,239,227,0.4); font-weight:600; margin-top:3px; }
+
+/* PRODUCTS */
+.products-section { padding:80px 80px 100px; }
+.products-header { display:grid; grid-template-columns:1fr auto; align-items:end; margin-bottom:56px; gap:40px; }
+.products-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:28px; }
+.product-card { background:var(--white); border:1px solid var(--cream-dark); transition:transform 0.3s,box-shadow 0.3s; position:relative; overflow:hidden; }
+.product-card:hover { transform:translateY(-6px); box-shadow:0 20px 48px rgba(42,58,63,0.15); border-color:transparent; }
+.product-img { height:380px; overflow:hidden; position:relative; background:var(--steel); display:flex; align-items:center; justify-content:center; }
+.product-img img { width:100%; height:100%; object-fit:cover; object-position:center 15%; transition:transform 0.5s; }
+.product-card:hover .product-img img { transform:scale(1.04); }
+.product-tag { position:absolute; top:14px; left:14px; font-size:9px; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; padding:5px 10px; z-index:2; }
+.product-tag.gin { background:var(--forest); color:var(--gold-light); }
+.product-tag.vodka { background:var(--steel); color:var(--white); }
+.product-tag.featured { background:var(--gold); color:var(--forest); }
+.product-quick { position:absolute; bottom:-48px; left:0; right:0; background:var(--steel); color:var(--gold-light); text-align:center; padding:14px; font-size:11px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; transition:bottom 0.3s; z-index:2; }
+.product-card:hover .product-quick { bottom:0; }
+.product-info { padding:28px 28px 32px; }
+.product-style { font-size:10px; color:var(--mist); letter-spacing:0.2em; text-transform:uppercase; font-weight:600; margin-bottom:6px; }
+.product-name { font-family:'Playfair Display',serif; font-size:26px; font-weight:700; color:var(--forest); margin-bottom:10px; line-height:1.1; }
+.product-sub { font-size:12px; color:var(--copper); font-weight:600; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:14px; }
+.product-desc { font-size:14px; color:var(--gray); line-height:1.7; margin-bottom:16px; font-weight:300; }
+.tasting-notes { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:18px; }
+.tnote { font-size:10px; color:var(--moss); background:rgba(74,124,89,0.1); padding:4px 10px; font-weight:500; }
+.product-footer { display:flex; align-items:center; justify-content:space-between; padding-top:16px; border-top:1px solid var(--cream-dark); }
+.product-price { font-family:'Cinzel',serif; font-size:20px; color:var(--forest); font-weight:600; }
+.product-abv { font-size:11px; color:var(--gray); font-weight:500; letter-spacing:0.1em; }
+.add-btn { background:var(--steel); color:var(--cream); border:none; padding:11px 20px; font-family:'Karla',sans-serif; font-size:11px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; cursor:pointer; transition:all 0.2s; }
+.add-btn:hover { background:var(--gold); color:var(--forest); }
+
+/* STILL FEATURE - copper pot close up */
+.still-feature {
+  position:relative; min-height:500px; display:grid; grid-template-columns:1fr 1fr; overflow:hidden;
+}
+.still-feature-image {
+  background: url('new_columns_up.jpg') center/cover;
+  position:relative;
+}
+.still-feature-image::after {
+  content:''; position:absolute; inset:0;
+  background:linear-gradient(90deg, transparent 60%, var(--cream) 100%);
+}
+.still-feature-text { background:var(--cream); padding:80px 72px; display:flex; flex-direction:column; justify-content:center; }
+.still-feature-text .section-eyebrow { color:var(--gold); }
+.still-feature-text .section-title { color:var(--forest); margin:12px 0 20px; }
+.still-feature-text p { font-size:15px; color:var(--gray); line-height:1.8; font-weight:300; margin-bottom:28px; }
+.still-specs { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:24px 0 32px; }
+.spec-item { background:var(--white); padding:18px 20px; border:1px solid var(--cream-dark); }
+.spec-item h6 { font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--mist); font-weight:600; margin-bottom:4px; }
+.spec-item p { font-size:15px; color:var(--forest); font-weight:700; font-family:'Cinzel',serif; }
+
+/* COCKTAIL BAND */
+.cocktail-band {
+  position:relative; min-height:340px; display:flex; align-items:center; overflow:hidden;
+  background: linear-gradient(110deg, rgba(42,58,63,0.96) 0%, rgba(42,58,63,0.85) 50%, rgba(30,58,34,0.9) 100%),
+    url('pc-img-008.jpg') center/cover;
+}
+.cocktail-band-content { position:relative; z-index:2; padding:80px; max-width:700px; }
+.cocktail-band-content .section-eyebrow { color:var(--gold); }
+.cocktail-band-content .section-eyebrow::before { background:var(--gold); }
+.cocktail-band-content h3 { font-family:'Playfair Display',serif; font-size:clamp(28px,3.5vw,44px); font-weight:700; color:var(--white); line-height:1.1; margin:12px 0 20px; }
+.cocktail-band-content h3 em { font-style:italic; color:var(--gold-light); }
+.cocktail-band-content p { font-size:15px; color:rgba(245,239,227,0.7); line-height:1.75; font-weight:300; margin-bottom:32px; }
+.cocktail-links { display:flex; gap:16px; flex-wrap:wrap; }
+
+/* CTA STRIP */
+.cta-strip { background:var(--bark); padding:64px 80px; display:flex; justify-content:space-between; align-items:center; gap:40px; }
+.cta-strip-text h3 { font-family:'Playfair Display',serif; font-size:30px; font-weight:700; color:var(--white); margin-bottom:8px; }
+.cta-strip-text h3 em { font-style:italic; color:var(--gold-light); }
+.cta-strip-text p { font-size:15px; color:rgba(245,239,227,0.6); font-weight:300; }
+.cta-strip-btns { display:flex; gap:16px; flex-shrink:0; }
+
+/* FOOTER */
+footer { background:var(--steel); color:var(--cream); padding:80px 80px 40px; }
+.footer-grid { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:60px; margin-bottom:64px; }
+.footer-brand-name { font-family:'Cinzel',serif; font-size:22px; font-weight:700; color:var(--white); display:block; margin-bottom:4px; }
+.footer-brand-sub { font-size:10px; letter-spacing:0.25em; color:var(--gold); text-transform:uppercase; font-weight:600; display:block; margin-bottom:20px; }
+.footer-brand p { font-size:14px; color:rgba(245,239,227,0.6); line-height:1.8; font-weight:300; max-width:280px; }
+.footer-col h5 { font-family:'Cinzel',serif; font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin-bottom:20px; }
+.footer-col ul { list-style:none; } .footer-col li { margin-bottom:10px; }
+.footer-col a { text-decoration:none; font-size:14px; color:rgba(245,239,227,0.6); transition:color 0.2s; font-weight:300; }
+.footer-col a:hover { color:var(--gold-light); }
+.footer-bottom { border-top:1px solid rgba(245,239,227,0.1); padding-top:32px; display:flex; align-items:center; justify-content:space-between; }
+.footer-bottom p { font-size:12px; color:rgba(245,239,245,0.4); }
+.footer-social { display:flex; gap:16px; }
+.social-link { width:36px; height:36px; border:1px solid rgba(245,239,227,0.2); display:flex; align-items:center; justify-content:center; text-decoration:none; font-size:12px; color:rgba(245,239,245,0.5); transition:all 0.2s; font-weight:700; }
+.social-link:hover { border-color:var(--gold); color:var(--gold-light); }
+
+.experience-images { grid-template-columns: 1fr !important; }
+  .stats-bar { grid-template-columns: 1fr !important; }
+  .distillery-stats { gap: 16px; }
+  .dstat { flex: 1 1 100%; text-align: center; }
+  .hero-title { font-size: clamp(36px, 10vw, 56px) !important; }
+}
+
+
+  }
+</style>
+
+<style>
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
+
+  /* NAV - hide desktop links and buttons, show hamburger */
+  nav { padding: 0 16px; height: 60px; position: relative; }
+  .nav-logo-top { font-size: 14px; }
+  .nav-logo-sub { font-size: 8px; }
+  .nav-links { display: none !important; }
+  .nav-actions { display: none !important; }
+  .nav-hamburger {
+    display: flex !important;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 8px;
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 200;
+  }
+  .nav-hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--forest);
+    transition: all 0.3s;
+  }
+  .nav-mobile-menu {
+    display: none;
+    position: fixed;
+    top: 60px;
+    left: 0;
+    right: 0;
+    background: var(--white);
+    border-top: 2px solid var(--gold);
+    z-index: 199;
+    padding: 8px 0 24px;
+    box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+    flex-direction: column;
+  }
+  .nav-mobile-menu.open { display: flex; }
+  .nav-mobile-menu a {
+    display: block;
+    padding: 14px 24px;
+    font-family: 'Karla', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--forest);
+    text-decoration: none;
+    border-bottom: 1px solid var(--cream-dark);
+  }
+  .nav-mobile-menu a:last-child { border-bottom: none; color: var(--gold); }
+
+  /* ANNOUNCE */
+  .announce { font-size: 10px; padding: 7px 12px; letter-spacing: 0.06em; }
+
+  /* HERO */
+  .hero { min-height: 80vh; }
+  .hero-content { padding: 0 24px !important; }
+  .collection-hero { height: 60vh; min-height: 400px; padding-bottom: 40px; }
+  .collection-hero-content { padding: 0 24px !important; }
+  .collection-hero h1 { font-size: clamp(40px, 11vw, 64px) !important; }
+  .collection-hero::after { height: 40px; }
+  .page-hero { min-height: 300px; }
+  .facility-hero-content,
+  .tasting-hero-content { padding: 0 24px !important; }
+
+  /* SECTIONS */
+  section { padding-left: 24px !important; padding-right: 24px !important; }
+  .intro-strip,
+  .origin-strip,
+  .products-section,
+  .story-intro,
+  .story-chapters,
+  .values,
+  .program-section,
+  .cider-process,
+  .distillery-intro,
+  .still-feature,
+  .story-band,
+  .cta-strip,
+  .mission-section,
+  .barrel-feature,
+  .tanks-band,
+  .cocktail-band,
+  .footer-grid { padding-left: 24px !important; padding-right: 24px !important; }
+
+  /* ALL GRIDS → 1 column */
+  .intro-strip,
+  .origin-strip,
+  .story-intro,
+  .program-section,
+  .story-band,
+  .still-feature,
+  .distillery-intro,
+  .cider-process,
+  .mission-grid,
+  .facility-overview,
+  .overview-grid,
+  .distillery-section,
+  .contract-grid,
+  .footer-grid,
+  .about-split,
+  .hours-grid,
+  .map-section,
+  .private-events,
+  .contact-grid { grid-template-columns: 1fr !important; }
+
+  /* STATS */
+  .stats-bar { grid-template-columns: 1fr 1fr !important; }
+  .stat-item { padding: 20px 12px !important; border-right: none !important; border-bottom: 1px solid rgba(255,255,255,0.1); }
+
+  /* CTA STRIP */
+  .cta-strip { flex-direction: column !important; gap: 20px !important; padding: 40px 24px !important; text-align: center; }
+  .cta-strip-btns { flex-direction: column; width: 100%; gap: 12px; }
+  .cta-strip-btns a,
+  .cta-strip-btns button { width: 100%; text-align: center; box-sizing: border-box; }
+
+  /* VALUES */
+  .values-grid { grid-template-columns: 1fr 1fr !important; gap: 12px !important; }
+  .value-card { padding: 20px 16px !important; }
+
+  /* PRODUCTS GRID */
+  .products-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
+  .product-card.featured { grid-column: span 1 !important; }
+  .product-card.featured .product-img { height: 240px !important; }
+  .product-img { height: 200px !important; }
+  .product-info { padding: 16px 18px 20px !important; }
+  .product-footer { flex-wrap: wrap; gap: 10px; }
+
+  /* CAT CARDS */
+  .cat-cards { grid-template-columns: 1fr !important; }
+  .cat-card { height: 200px !important; }
+
+  /* BANNERS */
+  .banner-section { flex-direction: column !important; }
+  .banner-half { min-height: 200px !important; width: 100% !important; }
+
+  /* IMAGE PANELS */
+  .story-intro-image,
+  .story-band-image,
+  .distillery-intro-image,
+  .still-feature-image,
+  .about-image,
+  .program-image { min-height: 220px !important; }
+
+  /* TEXT SECTIONS */
+  .story-band-text,
+  .program-text,
+  .distillery-intro-text,
+  .still-feature-text,
+  .cf-text { padding: 40px 24px !important; }
+  .cocktail-band-content { padding: 40px 24px !important; }
+  .process-right { grid-template-columns: 1fr 1fr !important; gap: 12px !important; }
+  .still-specs { grid-template-columns: 1fr 1fr !important; gap: 10px !important; }
+
+  /* SECTION TITLES */
+  .section-title { font-size: clamp(26px, 6vw, 38px) !important; }
+
+  /* SHOP SIDEBAR */
+  .shop-body { grid-template-columns: 1fr !important; }
+  .shop-layout { grid-template-columns: 1fr !important; }
+  .shop-sidebar { display: none !important; }
+  .filter-bar { overflow-x: auto; white-space: nowrap; padding: 0 24px; -webkit-overflow-scrolling: touch; }
+  .filter-btn { flex-shrink: 0; font-size: 11px; padding: 10px 14px; }
+
+  /* EXPERIENCE GRID */
+  .experience-images { grid-template-columns: 1fr 1fr !important; }
+
+  /* COLLECTION FEATURE */
+  .collection-feature { flex-direction: column !important; }
+  .cf-image { min-height: 200px; flex: none !important; width: 100% !important; }
+
+  /* SPIRITS */
+  .distillery-stats { flex-wrap: wrap; gap: 16px; }
+  .dstat { flex: 1 1 45%; text-align: center; }
+
+  /* FOOTER */
+  footer { padding: 40px 24px 28px !important; }
+  .footer-grid { gap: 28px !important; margin-bottom: 28px !important; }
+  .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+  .footer-brand p { max-width: 100% !important; }
+
+  /* BUTTONS */
+
+  /* ── SHOP: fix class-name mismatch ── */
+  .shop-body { grid-template-columns: 1fr !important; }
+
+  /* ── GRIDS missed in original pass ── */
+  .chapter { grid-template-columns: 1fr !important; gap: 20px !important; }
+  .chapter-number { font-size: 40px !important; margin-bottom: 0; }
+  .products-header { grid-template-columns: 1fr !important; gap: 12px !important; }
+  .form-row { grid-template-columns: 1fr !important; gap: 16px !important; }
+  .info-hours { grid-template-columns: 1fr 1fr !important; }
+  .contact-hero-inner { grid-template-columns: 1fr !important; gap: 40px !important; }
+
+  /* ── FACILITY ── */
+  .facility-overview-images { grid-template-columns: 1fr 1fr !important; grid-template-rows: 160px 120px !important; }
+  .spec-list { grid-template-columns: 1fr !important; }
+  .brewery-header,
+  .distillery-header { grid-template-columns: 1fr !important; gap: 20px !important; margin-bottom: 32px !important; }
+  .brewery-capabilities { grid-template-columns: 1fr 1fr !important; }
+  .distillery-equipment { grid-template-columns: 1fr 1fr !important; }
+  .distillery-process { grid-template-columns: 1fr 1fr !important; }
+  .process-step { border-right: none !important; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .contract-hero-inner,
+  .contract-cta-inner { grid-template-columns: 1fr !important; gap: 36px !important; }
+  .benefits-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
+  .cp-steps { grid-template-columns: 1fr 1fr !important; }
+  .contract-benefits,
+  .contract-process { padding: 40px 24px !important; }
+  .brewery-section,
+  .distillery-section { padding: 48px 24px !important; }
+  .contract-hero-band { padding: 48px 24px !important; }
+
+  /* ── TASTING ROOM ── */
+  .experience { padding: 48px 24px !important; }
+  .experience-images { grid-template-rows: 200px 140px !important; }
+  .tap-list { padding: 48px 24px !important; }
+  .tap-grid { grid-template-columns: 1fr 1fr !important; }
+  .visit-info { grid-template-columns: 1fr !important; }
+  .visit-address { padding: 40px 24px !important; }
+  .events { padding: 48px 24px !important; }
+  .events-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
+  .event-card { grid-template-columns: 80px 1fr !important; }
+  .private-events-content { padding: 40px 24px !important; }
+
+  /* ── CONTACT ── */
+  .contact-form-section,
+  .contact-info-section { padding: 40px 24px !important; }
+
+  /* ── SHARED SECTION PADDING ── */
+  .distillery-inner { padding: 48px 24px !important; }
+  .facility-overview { padding: 48px 24px !important; }
+
+  .btn-primary,
+  .btn-outline,
+  .btn-outline-dark { padding: 13px 24px !important; font-size: 11px !important; }
+}
+
+@media (max-width: 480px) {
+  .values-grid { grid-template-columns: 1fr !important; }
+  .process-right { grid-template-columns: 1fr !important; }
+  .experience-images { grid-template-columns: 1fr !important; }
+  .stats-bar { grid-template-columns: 1fr 1fr !important; }
+  .dstat { flex: 1 1 100%; }
+  .collection-hero h1 { font-size: clamp(34px, 10vw, 52px) !important; }
+}
+</style>
+
+<script>
+function toggleMobileMenu() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+document.addEventListener('click', function(e) {
+  var menu = document.getElementById('mobileMenu');
+  var btn = document.querySelector('.nav-hamburger');
+  if (menu && btn && !menu.contains(e.target) && !btn.contains(e.target)) {
+    menu.classList.remove('open');
+  }
+});
+</script>
+</head>
+<body>
+
+<div class="announce">🥃 &nbsp; Handcrafted on Vendome Copper Pot Stills · Tumwater, WA · 21+ Only &nbsp; 🥃</div>
+
+<nav>
+  <a href="percival-creek-site.html" class="nav-logo">
+    <span class="nav-logo-top">PERCIVAL CREEK</span>
+    <span class="nav-logo-sub">Brewing · Cider · Distilling</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="percival-creek-shop.html">Shop</a></li>
+    <li><a href="percival-creek-beer.html">Beer</a></li>
+    <li><a href="percival-creek-cider.html">Cider</a></li>
+    <li><a href="percival-creek-spirits.html" class="active">Spirits</a></li>
+    <li><a href="percival-creek-tasting-room.html">Tasting Room</a></li>
+    <li><a href="percival-creek-about.html">Our Story</a></li>
+    <li><a href="percival-creek-facility.html">Facility</a></li>
+  </ul>
+  <div class="nav-actions" style="display:flex; gap:10px;">
+    <a href="percival-creek-contact.html" class="nav-btn" style="text-decoration:none; background:transparent; color:var(--forest); border:1.5px solid var(--forest);">Host a Private Event</a>
+    <button class="nav-btn" onclick="location.href='percival-creek-shop.html'">Shop Now</button>
+  </div>
+
+<button class="nav-hamburger" onclick="toggleMobileMenu()" aria-label="Open menu">
+  <span></span><span></span><span></span>
+</button>
+<div class="nav-mobile-menu" id="mobileMenu">
+  <a href="percival-creek-site.html">Home</a>
+  <a href="percival-creek-shop.html">Shop</a>
+  <a href="percival-creek-beer.html">Beer</a>
+  <a href="percival-creek-cider.html">Cider</a>
+  <a href="percival-creek-spirits.html">Spirits</a>
+  <a href="percival-creek-tasting-room.html">Tasting Room</a>
+  <a href="percival-creek-about.html">Our Story</a>
+  <a href="percival-creek-facility.html">Facility</a>
+  <a href="percival-creek-contact.html">Host a Private Event</a>
+</div>
+</nav>
+
+<!-- HERO -->
+<section class="collection-hero">
+  <div class="collection-hero-bg"></div>
+  <div class="collection-hero-content">
+    <div class="breadcrumb">Home / Shop / Spirits</div>
+    <h1>Percival Creek<br><em>Distilling</em><small>Handcrafted in Tumwater, Washington</small></h1>
+  </div>
+</section>
+
+<!-- DISTILLERY INTRO -->
+<div class="distillery-intro reveal">
+  <div class="distillery-intro-image"></div>
+  <div class="distillery-intro-text">
+    <div class="section-eyebrow">Percival Creek Distilling</div>
+    <h2 class="section-title">Copper Stills.<br><em>Student Hands.</em></h2>
+    <p>Our distillery runs on Vendome copper pot stills — the same type used by the most respected craft distilleries in the country. Our students operate them. Every bottle you buy was distilled, cut, and bottled on-site by someone learning their trade.</p>
+    <div class="distillery-stats">
+      <div class="dstat"><div class="num">250</div><div class="lbl">Gal Pot Still</div></div>
+      <div class="dstat"><div class="num">500</div><div class="lbl">Gal Column Still</div></div>
+      <div class="dstat"><div class="num">TTB</div><div class="lbl">Licensed</div></div>
+      <div class="dstat"><div class="num">100%</div><div class="lbl">to SPSCC</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- PRODUCTS -->
+<section class="products-section">
+  <div class="products-header reveal">
+    <div>
+      <div class="section-eyebrow">Percival Creek Distilling</div>
+      <h2 class="section-title">Our <em>Spirits</em></h2>
+    </div>
+    <a href="percival-creek-shop.html" class="btn-outline-dark">View All Products</a>
+  </div>
+  <div class="products-grid">
+
+    <!-- LAVENDER GIN -->
+    <div class="product-card reveal">
+      <div class="product-img">
+        <img src="bottle_lavender.jpg" alt="Lavender Gin">
+        <div class="product-tag gin">Gin</div>
+        
+      </div>
+      <div class="product-info">
+        <div class="product-style">Botanical Gin</div>
+        <div class="product-name">Lavender Gin</div>
+        <div class="product-sub">Percival Creek Distilling</div>
+        <div class="tasting-notes">
+          <span class="tnote">Lavender</span><span class="tnote">Juniper</span><span class="tnote">Floral</span><span class="tnote">Soft Citrus</span>
+        </div>
+        <div class="product-desc">Pacific Northwest botanicals anchored by juniper and lifted by lavender. Delicate enough to sip neat, complex enough to anchor a proper cocktail. Handcrafted in Tumwater, WA.</div>
+        <div class="product-footer">
+          <div>
+            <div class="product-price">$38.99 / 750ml</div>
+            <div class="product-abv">43% ABV · Distilled in Tumwater, WA</div>
+          </div>
+          <div id='product-component-1775504954184'></div>
+<script type="text/javascript">
+/*<![CDATA[*/
+(function () {
+  var scriptURL = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js';
+  if (window.ShopifyBuy) { if (window.ShopifyBuy.UI) { ShopifyBuyInit(); } else { loadScript(); } } else { loadScript(); }
+  function loadScript() { var script = document.createElement('script'); script.async = true; script.src = scriptURL; (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(script); script.onload = ShopifyBuyInit; }
+  function ShopifyBuyInit() {
+    var client = ShopifyBuy.buildClient({ domain: 'percival-creek-brewing.myshopify.com', storefrontAccessToken: '79abc6c477c6a6f57bc7ac0a75057462' });
+    ShopifyBuy.UI.onReady(client).then(function (ui) {
+      ui.createComponent('product', {
+        id: '9092573266158',
+        node: document.getElementById('product-component-1775504954184'),
+        moneyFormat: '%24%7B%7Bamount%7D%7D',
+        options: {
+          "product": {
+            "styles": { "product": { "@media (min-width: 601px)": { "max-width": "calc(25% - 20px)", "margin-left": "20px", "margin-bottom": "50px" } } },
+            "contents": { "img": false, "title": false, "price": false },
+            "text": { "button": "Add to cart" },
+            "variantId": "all"
+          },
+          "modalProduct": {
+            "contents": { "img": false, "imgWithCarousel": true, "button": false, "buttonWithQuantity": true },
+            "styles": { "product": { "@media (min-width: 601px)": { "max-width": "100%", "margin-left": "0px", "margin-bottom": "0px" } } },
+            "text": { "button": "Add to cart" }
+          },
+          "option": {},
+          "cart": { "text": { "total": "Subtotal", "button": "Checkout" } },
+          "toggle": {}
+        }
+      });
+    });
+  }
+})();
+/*]]>*/
+</script>
+        </div>
+      </div>
+    </div>
+
+    <!-- LONDON DRY GIN -->
+    <div class="product-card reveal">
+      <div class="product-img">
+        <img src="bottle_vodka.jpg" alt="London Dry Gin">
+        <div class="product-tag featured">Bestseller</div>
+        
+      </div>
+      <div class="product-info">
+        <div class="product-style">London Dry Gin</div>
+        <div class="product-name">London Dry Gin</div>
+        <div class="product-sub">Percival Creek Distilling</div>
+        <div class="tasting-notes">
+          <span class="tnote">Juniper Forward</span><span class="tnote">Coriander</span><span class="tnote">Citrus Peel</span><span class="tnote">Dry Finish</span>
+        </div>
+        <div class="product-desc">Classic London Dry structure — juniper-forward, bright citrus peel, and a clean, dry finish. Honest gin, no gimmicks. Made on a Vendome copper pot still by students who understand the tradition.</div>
+        <div class="product-footer">
+          <div>
+            <div class="product-price">$38.99 / 750ml</div>
+            <div class="product-abv">47% ABV · Distilled in Tumwater, WA</div>
+          </div>
+          <div id='product-component-1775504978217'></div>
+<script type="text/javascript">
+/*<![CDATA[*/
+(function () {
+  var scriptURL = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js';
+  if (window.ShopifyBuy) { if (window.ShopifyBuy.UI) { ShopifyBuyInit(); } else { loadScript(); } } else { loadScript(); }
+  function loadScript() { var script = document.createElement('script'); script.async = true; script.src = scriptURL; (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(script); script.onload = ShopifyBuyInit; }
+  function ShopifyBuyInit() {
+    var client = ShopifyBuy.buildClient({ domain: 'percival-creek-brewing.myshopify.com', storefrontAccessToken: '79abc6c477c6a6f57bc7ac0a75057462' });
+    ShopifyBuy.UI.onReady(client).then(function (ui) {
+      ui.createComponent('product', {
+        id: '9092573659374',
+        node: document.getElementById('product-component-1775504978217'),
+        moneyFormat: '%24%7B%7Bamount%7D%7D',
+        options: {
+          "product": {
+            "styles": { "product": { "@media (min-width: 601px)": { "max-width": "calc(25% - 20px)", "margin-left": "20px", "margin-bottom": "50px" } } },
+            "contents": { "img": false, "title": false, "price": false },
+            "text": { "button": "Add to cart" },
+            "variantId": "all"
+          },
+          "modalProduct": {
+            "contents": { "img": false, "imgWithCarousel": true, "button": false, "buttonWithQuantity": true },
+            "styles": { "product": { "@media (min-width: 601px)": { "max-width": "100%", "margin-left": "0px", "margin-bottom": "0px" } } },
+            "text": { "button": "Add to cart" }
+          },
+          "option": {},
+          "cart": { "text": { "total": "Subtotal", "button": "Checkout" } },
+          "toggle": {}
+        }
+      });
+    });
+  }
+})();
+/*]]>*/
+</script>
+        </div>
+      </div>
+    </div>
+
+    <!-- SMALL BATCH VODKA -->
+    <div class="product-card reveal">
+      <div class="product-img">
+        <img src="bottle_london_dry.jpg" alt="Small Batch Vodka">
+        <div class="product-tag vodka">Vodka</div>
+        
+      </div>
+      <div class="product-info">
+        <div class="product-style">Small Batch Vodka</div>
+        <div class="product-name">Small Batch Vodka</div>
+        <div class="product-sub">Percival Creek Distilling</div>
+        <div class="tasting-notes">
+          <span class="tnote">Ultra-Clean</span><span class="tnote">Smooth</span><span class="tnote">PNW Grain</span><span class="tnote">Neutral</span>
+        </div>
+        <div class="product-desc">Distilled from Pacific Northwest grain, filtered to near-purity. Exceptionally smooth with no burn — designed to be noticed for what it doesn't have as much as what it does.</div>
+        <div class="product-footer">
+          <div>
+            <div class="product-price">$32.99 / 750ml</div>
+            <div class="product-abv">40% ABV · Distilled in Tumwater, WA</div>
+          </div>
+          <div id='product-component-1775505007567'></div>
+<script type="text/javascript">
+/*<![CDATA[*/
+(function () {
+  var scriptURL = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js';
+  if (window.ShopifyBuy) { if (window.ShopifyBuy.UI) { ShopifyBuyInit(); } else { loadScript(); } } else { loadScript(); }
+  function loadScript() { var script = document.createElement('script'); script.async = true; script.src = scriptURL; (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(script); script.onload = ShopifyBuyInit; }
+  function ShopifyBuyInit() {
+    var client = ShopifyBuy.buildClient({ domain: 'percival-creek-brewing.myshopify.com', storefrontAccessToken: '79abc6c477c6a6f57bc7ac0a75057462' });
+    ShopifyBuy.UI.onReady(client).then(function (ui) {
+      ui.createComponent('product', {
+        id: '9092573855982',
+        node: document.getElementById('product-component-1775505007567'),
+        moneyFormat: '%24%7B%7Bamount%7D%7D',
+        options: {
+          "product": {
+            "styles": { "product": { "@media (min-width: 601px)": { "max-width": "calc(25% - 20px)", "margin-left": "20px", "margin-bottom": "50px" } } },
+            "contents": { "img": false, "title": false, "price": false },
+            "text": { "button": "Add to cart" },
+            "variantId": "all"
+          },
+          "modalProduct": {
+            "contents": { "img": false, "imgWithCarousel": true, "button": false, "buttonWithQuantity": true },
+            "styles": { "product": { "@media (min-width: 601px)": { "max-width": "100%", "margin-left": "0px", "margin-bottom": "0px" } } },
+            "text": { "button": "Add to cart" }
+          },
+          "option": {},
+          "cart": { "text": { "total": "Subtotal", "button": "Checkout" } },
+          "toggle": {}
+        }
+      });
+    });
+  }
+})();
+/*]]>*/
+</script>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- STILL FEATURE -->
+<div class="still-feature reveal">
+  <div class="still-feature-image"></div>
+  <div class="still-feature-text">
+    <div class="section-eyebrow">Our Equipment</div>
+    <h2 class="section-title">Vendome<br><em>Copper Stills</em></h2>
+    <p>We run Vendome Copper &amp; Brass Works stills — handcrafted in Louisville, Kentucky and regarded as some of the finest distillation equipment made anywhere. The copper reacts with the distillate to remove sulfurs and shape character in ways stainless simply can't replicate.</p>
+    <div class="still-specs">
+      <div class="spec-item"><h6>Pot Still</h6><p>250 Gallon</p></div>
+      <div class="spec-item"><h6>Column Still</h6><p>500 Gallon</p></div>
+      <div class="spec-item"><h6>Material</h6><p>Copper</p></div>
+      <div class="spec-item"><h6>License</h6><p>TTB Federal</p></div>
+    </div>
+    <a href="percival-creek-facility.html" class="btn-primary">Tour the Distillery →</a>
+  </div>
+</div>
+
+<!-- COCKTAIL BAND -->
+<div class="cocktail-band reveal">
+  <div class="cocktail-band-content">
+    <div class="section-eyebrow">Tasting Room</div>
+    <h3>Taste it the way it was <em>meant to be enjoyed.</em></h3>
+    <p>Our tasting room bartenders know these spirits intimately — they may have made them. Come in for a guided tasting, a proper cocktail, or just a pour over ice. Every bottle on the shelf is available to taste before you buy.</p>
+    <div class="cocktail-links">
+      <a href="percival-creek-tasting-room.html" class="btn-primary">Visit the Tasting Room</a>
+      <a href="percival-creek-contact.html" class="btn-outline">Ask About Wholesale</a>
+    </div>
+  </div>
+</div>
+
+<!-- CTA STRIP -->
+<div class="cta-strip reveal">
+  <div class="cta-strip-text">
+    <h3>Want it on your <em>back bar?</em></h3>
+    <p>We work with bars, restaurants, and retailers across the Pacific Northwest. Contact our sales team.</p>
+  </div>
+  <div class="cta-strip-btns">
+    <a href="/cdn-cgi/l/email-protection#2b584a474e586b5b4e5948425d4a4748594e4e4005484446" class="btn-primary"><span class="__cf_email__" data-cfemail="97e4f6fbf2e4d7e7f2e5f4fee1f6fbf4e5f2f2fcb9f4f8fa">[email&#160;protected]</span></a>
+    <a href="percival-creek-beer.html" class="btn-outline">← Explore Our Beer</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand"><span class="footer-brand-name">PERCIVAL CREEK</span><span class="footer-brand-sub">Brewing · Cider · Distilling</span><p>Rooted in Tumwater, Washington. A collaboration between craft professionals and the students of SPSCC's Craft Brewing &amp; Distilling programs.</p></div>
+    <div class="footer-col"><h5>Shop</h5><ul><li><a href="percival-creek-shop.html">All Products</a></li><li><a href="percival-creek-beer.html">Beer</a></li><li><a href="percival-creek-cider.html">Cider</a></li><li><a href="percival-creek-spirits.html">Spirits</a></li></ul></div>
+    <div class="footer-col"><h5>Visit</h5><ul><li><a href="percival-creek-tasting-room.html">Tasting Room</a></li><li><a href="percival-creek-tasting-room.html">Hours &amp; Location</a></li><li><a href="percival-creek-contact.html">Private Events</a></li><li><a href="percival-creek-facility.html">Our Facility</a></li></ul></div>
+    <div class="footer-col"><h5>Connect</h5><ul><li><a href="percival-creek-about.html">Our Story</a></li><li><a href="percival-creek-contact.html">Contact Us</a></li><li><a href="/cdn-cgi/l/email-protection#8fe6e1e9e0cfffeafdece6f9eee3ecfdeaeae4a1ece0e2"><span class="__cf_email__" data-cfemail="9cf5f2faf3dcecf9eefff5eafdf0ffeef9f9f7b2fff3f1">[email&#160;protected]</span></a></li></ul></div>
+    <div class="footer-col"><h5>More</h5><ul><li><a href="percival-creek-facility.html">Facility &amp; Contract</a></li><li><a href="percival-creek-contact.html">Wholesale</a></li><li><a href="/cdn-cgi/l/email-protection#d6a5b7bab3a596a6b3a4b5bfa0b7bab5a4b3b3bdf8b5b9bb"><span class="__cf_email__" data-cfemail="c6b5a7aaa3b586b6a3b4a5afb0a7aaa5b4a3a3ade8a5a9ab">[email&#160;protected]</span></a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><p>© 2025 Percival Creek Brewing, Cider &amp; Distilling · Must be 21+ to purchase · Please drink responsibly.</p><div class="footer-social"><a href="https://www.instagram.com/percivalcreekwa/?hl=en" target="_blank" class="social-link">IG</a><a href="https://www.facebook.com/" target="_blank" class="social-link">FB</a></div></div>
+</footer>
+<script>
+document.querySelectorAll('.reveal').forEach(function(el) {
+  var io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  io.observe(el);
+});
+</script>
+</body>
+</html>

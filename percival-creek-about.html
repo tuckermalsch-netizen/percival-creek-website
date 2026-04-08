@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Story — Percival Creek</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Karla:wght@300;400;500;600;700&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --forest: #1e3a22; --forest-light: #2c5430; --moss: #4a7c59;
+  --gold: #c8932a; --gold-light: #e8b84b; --cream: #f5efe3;
+  --cream-dark: #ede3d0; --bark: #3d2b1a; --mist: #8aab94;
+  --white: #fdfaf5; --gray: #7a6a58;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { font-family:'Karla',sans-serif; background:var(--white); color:var(--bark); overflow-x:hidden; }
+
+/* NAV */
+.announce { background:var(--forest); color:var(--gold-light); text-align:center; padding:10px 20px; font-size:13px; letter-spacing:0.12em; font-weight:600; text-transform:uppercase; }
+nav { position:sticky; top:0; z-index:100; background:var(--white); border-bottom:1px solid rgba(30,58,34,0.1); display:flex; align-items:center; justify-content:space-between; padding:0 48px; height:72px; }
+.nav-logo { display:flex; flex-direction:column; line-height:1; text-decoration:none; }
+.nav-logo-top { font-family:'Cinzel',serif; font-size:18px; font-weight:700; color:var(--forest); letter-spacing:0.08em; }
+.nav-logo-sub { font-size:10px; letter-spacing:0.25em; color:var(--gold); text-transform:uppercase; font-weight:600; margin-top:2px; }
+.nav-links { display:flex; gap:36px; list-style:none; }
+.nav-links a { text-decoration:none; color:var(--bark); font-size:13px; letter-spacing:0.1em; text-transform:uppercase; font-weight:600; transition:color 0.2s; position:relative; }
+.nav-links a::after { content:''; position:absolute; bottom:-4px; left:0; width:0; height:2px; background:var(--gold); transition:width 0.3s; }
+.nav-links a:hover { color:var(--forest); }
+.nav-links a:hover::after { width:100%; }
+.nav-links a.active { color:var(--forest); }
+.nav-links a.active::after { width:100%; }
+.nav-btn { background:var(--forest); color:var(--cream); border:none; padding:10px 22px; font-family:'Karla',sans-serif; font-size:12px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; cursor:pointer; transition:background 0.2s; }
+.nav-btn:hover { background:var(--forest-light); }
+.nav-hamburger { display:none; }
+.nav-mobile-menu { display:none; }
+
+/* PAGE HERO */
+.page-hero {
+  position:relative; height:70vh; min-height:520px; overflow:hidden;
+  display:flex; align-items:flex-end; padding-bottom:100px;
+}
+.page-hero-bg {
+  position:absolute; inset:0;
+  background: linear-gradient(160deg, rgba(30,58,34,0.75) 0%, rgba(30,58,34,0.5) 50%, rgba(61,43,26,0.8) 100%),
+    url('students_brewery.jpg') center/cover;
+  animation: heroZoom 20s ease-in-out infinite alternate;
+}
+@keyframes heroZoom { from{transform:scale(1)} to{transform:scale(1.05)} }
+.page-hero::after {
+  content:''; position:absolute; bottom:-2px; left:0; right:0; height:100px;
+  background:var(--white); clip-path:polygon(0 60%, 100% 0, 100% 100%, 0 100%);
+}
+.page-hero-content { position:relative; z-index:2; padding:0 80px; animation:fadeIn 1s ease both; }
+@keyframes fadeIn { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+.breadcrumb { font-size:11px; letter-spacing:0.25em; text-transform:uppercase; color:var(--gold-light); font-weight:600; margin-bottom:20px; opacity:0.8; }
+.page-hero h1 { font-family:'Playfair Display',serif; font-size:clamp(52px,8vw,96px); font-weight:900; color:var(--white); line-height:0.95; letter-spacing:-0.02em; }
+.page-hero h1 em { font-style:italic; color:var(--gold-light); }
+
+/* SHARED COMPONENTS */
+.section-eyebrow { font-size:11px; letter-spacing:0.3em; text-transform:uppercase; color:var(--gold); font-weight:700; margin-bottom:16px; display:flex; align-items:center; gap:12px; }
+.section-eyebrow::before { content:''; display:block; width:32px; height:1px; background:var(--gold); flex-shrink:0; }
+.section-title { font-family:'Playfair Display',serif; font-size:clamp(32px,4vw,52px); font-weight:700; color:var(--forest); line-height:1.15; letter-spacing:-0.02em; }
+.section-title em { font-style:italic; color:var(--moss); }
+.section-body { font-size:16px; color:var(--gray); line-height:1.85; font-weight:300; }
+.btn-primary { background:var(--gold); color:var(--forest); padding:16px 36px; font-family:'Karla',sans-serif; font-size:13px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; border:none; cursor:pointer; transition:all 0.25s; text-decoration:none; display:inline-block; }
+.btn-primary:hover { background:var(--gold-light); transform:translateY(-2px); box-shadow:0 8px 24px rgba(200,147,42,0.35); }
+.btn-forest { background:var(--forest); color:var(--cream); padding:16px 36px; font-family:'Karla',sans-serif; font-size:13px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; border:none; cursor:pointer; transition:all 0.25s; text-decoration:none; display:inline-block; }
+.btn-forest:hover { background:var(--forest-light); transform:translateY(-2px); }
+.reveal { opacity:1; transform:translateY(0); transition:opacity 0.6s ease, transform 0.6s ease; }
+.reveal.visible { opacity:1; transform:translateY(0); }
+
+/* STORY SECTIONS */
+.story-intro {
+  padding:100px 80px 80px;
+  display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center;
+}
+.story-intro-text { }
+.story-intro-text .section-eyebrow { margin-bottom:20px; }
+.story-intro-text .section-title { margin-bottom:28px; }
+.story-intro-text .section-body { margin-bottom:20px; }
+.story-intro-image {
+  position:relative; height:520px; overflow:hidden;
+}
+.story-intro-image img { width:100%; height:100%; object-fit:cover; }
+.story-intro-image::before {
+  content:''; position:absolute; top:-20px; left:-20px; right:20px; bottom:20px;
+  border:1px solid var(--gold); z-index:0; pointer-events:none;
+}
+.story-intro-image img { position:relative; z-index:1; }
+
+/* PULL QUOTE */
+.pull-quote {
+  background:var(--forest); padding:80px;
+  display:flex; align-items:center; gap:60px;
+}
+.pull-quote-mark { font-family:'Playfair Display',serif; font-size:200px; color:var(--gold); line-height:0.7; opacity:0.3; flex-shrink:0; }
+.pull-quote-text { }
+.pull-quote-text blockquote { font-family:'Playfair Display',serif; font-size:clamp(24px,3vw,40px); font-style:italic; color:var(--white); line-height:1.4; margin-bottom:24px; font-weight:400; }
+.pull-quote-text cite { font-size:13px; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold-light); font-style:normal; font-weight:600; }
+
+/* STORY CHAPTERS */
+.story-chapters { padding:100px 80px; }
+.chapter { display:grid; grid-template-columns:80px 1fr; gap:40px; margin-bottom:80px; padding-bottom:80px; border-bottom:1px solid var(--cream-dark); }
+.chapter:last-child { border-bottom:none; margin-bottom:0; }
+.chapter-number { font-family:'Playfair Display',serif; font-size:72px; font-weight:900; font-style:italic; color:var(--cream-dark); line-height:1; padding-top:8px; }
+.chapter-content { }
+.chapter-content h3 { font-family:'Playfair Display',serif; font-size:36px; font-weight:700; color:var(--forest); margin-bottom:20px; line-height:1.2; }
+.chapter-content p { font-size:16px; color:var(--gray); line-height:1.85; font-weight:300; margin-bottom:16px; }
+.chapter-content p:last-child { margin-bottom:0; }
+
+/* VALUES */
+.values { background:var(--cream); padding:100px 80px; }
+.values-header { text-align:center; margin-bottom:64px; }
+.values-header .section-eyebrow { justify-content:center; }
+.values-header .section-eyebrow::before { display:none; }
+.values-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:2px; }
+.value-card { background:var(--white); padding:48px 36px; transition:background 0.3s; cursor:default; }
+.value-card:hover { background:var(--forest); }
+.value-card:hover .value-icon { border-color:var(--gold); color:var(--gold-light); }
+.value-card:hover h4 { color:var(--gold-light); }
+.value-card:hover p { color:rgba(245,239,227,0.7); }
+.value-icon { width:56px; height:56px; border:1.5px solid var(--cream-dark); display:flex; align-items:center; justify-content:center; font-size:24px; margin-bottom:24px; transition:all 0.3s; }
+.value-card h4 { font-family:'Cinzel',serif; font-size:13px; letter-spacing:0.15em; text-transform:uppercase; color:var(--forest); margin-bottom:14px; transition:color 0.3s; }
+.value-card p { font-size:14px; color:var(--gray); line-height:1.7; font-weight:300; transition:color 0.3s; }
+
+/* TEAM / PROGRAM */
+.program-section {
+  display:grid; grid-template-columns:1fr 1fr;
+}
+.program-image {
+  position:relative; overflow:hidden; min-height:560px;
+  background: linear-gradient(180deg, rgba(30,58,34,0.2) 0%, rgba(30,58,34,0.7) 100%),
+    url('students_lab_wide.jpg') center/cover;
+}
+.program-text { background:var(--bark); padding:80px 72px; display:flex; flex-direction:column; justify-content:center; }
+.program-text .section-eyebrow { color:var(--gold); }
+.program-text .section-eyebrow::before { background:var(--gold); }
+.program-text .section-title { color:var(--white); margin-bottom:24px; }
+.program-text .section-title em { color:var(--gold-light); }
+.program-text .section-body { color:rgba(245,239,227,0.7); margin-bottom:16px; }
+.program-stat-row { display:flex; gap:48px; margin:36px 0; }
+.program-stat h4 { font-family:'Playfair Display',serif; font-size:48px; font-style:italic; color:var(--gold-light); line-height:1; }
+.program-stat p { font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:var(--mist); font-weight:600; margin-top:4px; }
+
+/* FOOTER */
+footer { background:var(--bark); color:var(--cream); padding:80px 80px 40px; }
+.footer-grid { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:60px; margin-bottom:64px; }
+.footer-brand-name { font-family:'Cinzel',serif; font-size:22px; font-weight:700; color:var(--white); display:block; margin-bottom:4px; }
+.footer-brand-sub { font-size:10px; letter-spacing:0.25em; color:var(--gold); text-transform:uppercase; font-weight:600; display:block; margin-bottom:20px; }
+.footer-brand p { font-size:14px; color:rgba(245,239,227,0.6); line-height:1.8; font-weight:300; max-width:280px; }
+.footer-col h5 { font-family:'Cinzel',serif; font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin-bottom:20px; }
+.footer-col ul { list-style:none; }
+.footer-col li { margin-bottom:10px; }
+.footer-col a { text-decoration:none; font-size:14px; color:rgba(245,239,227,0.6); transition:color 0.2s; font-weight:300; }
+.footer-col a:hover { color:var(--gold-light); }
+.footer-bottom { border-top:1px solid rgba(245,239,227,0.1); padding-top:32px; display:flex; align-items:center; justify-content:space-between; }
+.footer-bottom p { font-size:12px; color:rgba(245,239,227,0.4); }
+.footer-social { display:flex; gap:16px; }
+.social-link { width:36px; height:36px; border:1px solid rgba(245,239,227,0.2); display:flex; align-items:center; justify-content:center; text-decoration:none; font-size:12px; color:rgba(245,239,227,0.5); transition:all 0.2s; font-weight:700; }
+.social-link:hover { border-color:var(--gold); color:var(--gold-light); }
+
+.experience-images { grid-template-columns: 1fr !important; }
+  .stats-bar { grid-template-columns: 1fr !important; }
+  .distillery-stats { gap: 16px; }
+  .dstat { flex: 1 1 100%; text-align: center; }
+  .hero-title { font-size: clamp(36px, 10vw, 56px) !important; }
+}
+
+
+  }
+</style>
+
+<style>
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
+
+  /* NAV - hide desktop links and buttons, show hamburger */
+  nav { padding: 0 16px; height: 60px; position: relative; }
+  .nav-logo-top { font-size: 14px; }
+  .nav-logo-sub { font-size: 8px; }
+  .nav-links { display: none !important; }
+  .nav-actions { display: none !important; }
+  .nav-hamburger {
+    display: flex !important;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 8px;
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 200;
+  }
+  .nav-hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--forest);
+    transition: all 0.3s;
+  }
+  .nav-mobile-menu {
+    display: none;
+    position: fixed;
+    top: 60px;
+    left: 0;
+    right: 0;
+    background: var(--white);
+    border-top: 2px solid var(--gold);
+    z-index: 199;
+    padding: 8px 0 24px;
+    box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+    flex-direction: column;
+  }
+  .nav-mobile-menu.open { display: flex; }
+  .nav-mobile-menu a {
+    display: block;
+    padding: 14px 24px;
+    font-family: 'Karla', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--forest);
+    text-decoration: none;
+    border-bottom: 1px solid var(--cream-dark);
+  }
+  .nav-mobile-menu a:last-child { border-bottom: none; color: var(--gold); }
+
+  /* ANNOUNCE */
+  .announce { font-size: 10px; padding: 7px 12px; letter-spacing: 0.06em; }
+
+  /* HERO */
+  .hero { min-height: 80vh; }
+  .hero-content { padding: 0 24px !important; }
+  .collection-hero { height: 60vh; min-height: 400px; padding-bottom: 40px; }
+  .collection-hero-content { padding: 0 24px !important; }
+  .collection-hero h1 { font-size: clamp(40px, 11vw, 64px) !important; }
+  .collection-hero::after { height: 40px; }
+  .page-hero { min-height: 300px; }
+  .facility-hero-content,
+  .tasting-hero-content { padding: 0 24px !important; }
+
+  /* SECTIONS */
+  section { padding-left: 24px !important; padding-right: 24px !important; }
+  .intro-strip,
+  .origin-strip,
+  .products-section,
+  .story-intro,
+  .story-chapters,
+  .values,
+  .program-section,
+  .cider-process,
+  .distillery-intro,
+  .still-feature,
+  .story-band,
+  .cta-strip,
+  .mission-section,
+  .barrel-feature,
+  .tanks-band,
+  .cocktail-band,
+  .footer-grid { padding-left: 24px !important; padding-right: 24px !important; }
+
+  /* ALL GRIDS → 1 column */
+  .intro-strip,
+  .origin-strip,
+  .story-intro,
+  .program-section,
+  .story-band,
+  .still-feature,
+  .distillery-intro,
+  .cider-process,
+  .mission-grid,
+  .facility-overview,
+  .overview-grid,
+  .distillery-section,
+  .contract-grid,
+  .footer-grid,
+  .about-split,
+  .hours-grid,
+  .map-section,
+  .private-events,
+  .contact-grid { grid-template-columns: 1fr !important; }
+
+  /* STATS */
+  .stats-bar { grid-template-columns: 1fr 1fr !important; }
+  .stat-item { padding: 20px 12px !important; border-right: none !important; border-bottom: 1px solid rgba(255,255,255,0.1); }
+
+  /* CTA STRIP */
+  .cta-strip { flex-direction: column !important; gap: 20px !important; padding: 40px 24px !important; text-align: center; }
+  .cta-strip-btns { flex-direction: column; width: 100%; gap: 12px; }
+  .cta-strip-btns a,
+  .cta-strip-btns button { width: 100%; text-align: center; box-sizing: border-box; }
+
+  /* VALUES */
+  .values-grid { grid-template-columns: 1fr 1fr !important; gap: 12px !important; }
+  .value-card { padding: 20px 16px !important; }
+
+  /* PRODUCTS GRID */
+  .products-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
+  .product-card.featured { grid-column: span 1 !important; }
+  .product-card.featured .product-img { height: 240px !important; }
+  .product-img { height: 200px !important; }
+  .product-info { padding: 16px 18px 20px !important; }
+  .product-footer { flex-wrap: wrap; gap: 10px; }
+
+  /* CAT CARDS */
+  .cat-cards { grid-template-columns: 1fr !important; }
+  .cat-card { height: 200px !important; }
+
+  /* BANNERS */
+  .banner-section { flex-direction: column !important; }
+  .banner-half { min-height: 200px !important; width: 100% !important; }
+
+  /* IMAGE PANELS */
+  .story-intro-image,
+  .story-band-image,
+  .distillery-intro-image,
+  .still-feature-image,
+  .about-image,
+  .program-image { min-height: 220px !important; }
+
+  /* TEXT SECTIONS */
+  .story-band-text,
+  .program-text,
+  .distillery-intro-text,
+  .still-feature-text,
+  .cf-text { padding: 40px 24px !important; }
+  .process-right { grid-template-columns: 1fr 1fr !important; gap: 12px !important; }
+  .still-specs { grid-template-columns: 1fr 1fr !important; gap: 10px !important; }
+
+  /* SECTION TITLES */
+  .section-title { font-size: clamp(26px, 6vw, 38px) !important; }
+
+  /* SHOP SIDEBAR */
+  .shop-body { grid-template-columns: 1fr !important; }
+  .shop-layout { grid-template-columns: 1fr !important; }
+  .shop-sidebar { display: none !important; }
+  .filter-bar { overflow-x: auto; white-space: nowrap; padding: 0 24px; -webkit-overflow-scrolling: touch; }
+  .filter-btn { flex-shrink: 0; font-size: 11px; padding: 10px 14px; }
+
+  /* EXPERIENCE GRID */
+  .experience-images { grid-template-columns: 1fr 1fr !important; }
+
+  /* COLLECTION FEATURE */
+  .collection-feature { flex-direction: column !important; }
+  .cf-image { min-height: 200px; flex: none !important; width: 100% !important; }
+
+  /* SPIRITS */
+  .distillery-stats { flex-wrap: wrap; gap: 16px; }
+  .dstat { flex: 1 1 45%; text-align: center; }
+
+  /* FOOTER */
+  footer { padding: 40px 24px 28px !important; }
+  .footer-grid { gap: 28px !important; margin-bottom: 28px !important; }
+  .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+  .footer-brand p { max-width: 100% !important; }
+
+  /* BUTTONS */
+
+  /* ── SHOP: fix class-name mismatch ── */
+  .shop-body { grid-template-columns: 1fr !important; }
+
+  /* ── GRIDS missed in original pass ── */
+  .chapter { grid-template-columns: 1fr !important; gap: 20px !important; }
+  .chapter-number { font-size: 40px !important; margin-bottom: 0; }
+  .products-header { grid-template-columns: 1fr !important; gap: 12px !important; }
+  .form-row { grid-template-columns: 1fr !important; gap: 16px !important; }
+  .info-hours { grid-template-columns: 1fr 1fr !important; }
+  .contact-hero-inner { grid-template-columns: 1fr !important; gap: 40px !important; }
+
+  /* ── FACILITY ── */
+  .facility-overview-images { grid-template-columns: 1fr 1fr !important; grid-template-rows: 160px 120px !important; }
+  .spec-list { grid-template-columns: 1fr !important; }
+  .brewery-header,
+  .distillery-header { grid-template-columns: 1fr !important; gap: 20px !important; margin-bottom: 32px !important; }
+  .brewery-capabilities { grid-template-columns: 1fr 1fr !important; }
+  .distillery-equipment { grid-template-columns: 1fr 1fr !important; }
+  .distillery-process { grid-template-columns: 1fr 1fr !important; }
+  .process-step { border-right: none !important; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .contract-hero-inner,
+  .contract-cta-inner { grid-template-columns: 1fr !important; gap: 36px !important; }
+  .benefits-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
+  .cp-steps { grid-template-columns: 1fr 1fr !important; }
+  .contract-benefits,
+  .contract-process { padding: 40px 24px !important; }
+  .brewery-section,
+  .distillery-section { padding: 48px 24px !important; }
+  .contract-hero-band { padding: 48px 24px !important; }
+
+  /* ── TASTING ROOM ── */
+  .experience { padding: 48px 24px !important; }
+  .experience-images { grid-template-rows: 200px 140px !important; }
+  .tap-list { padding: 48px 24px !important; }
+  .tap-grid { grid-template-columns: 1fr 1fr !important; }
+  .visit-info { grid-template-columns: 1fr !important; }
+  .visit-address { padding: 40px 24px !important; }
+  .events { padding: 48px 24px !important; }
+  .events-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
+  .event-card { grid-template-columns: 80px 1fr !important; }
+  .private-events-content { padding: 40px 24px !important; }
+
+  /* ── CONTACT ── */
+  .contact-form-section,
+  .contact-info-section { padding: 40px 24px !important; }
+
+  /* ── SHARED SECTION PADDING ── */
+  .distillery-inner { padding: 48px 24px !important; }
+  .facility-overview { padding: 48px 24px !important; }
+
+  .btn-primary,
+  .btn-outline,
+  .btn-outline-dark { padding: 13px 24px !important; font-size: 11px !important; }
+}
+
+@media (max-width: 480px) {
+  .values-grid { grid-template-columns: 1fr !important; }
+  .process-right { grid-template-columns: 1fr !important; }
+  .experience-images { grid-template-columns: 1fr !important; }
+  .stats-bar { grid-template-columns: 1fr 1fr !important; }
+  .dstat { flex: 1 1 100%; }
+  .collection-hero h1 { font-size: clamp(34px, 10vw, 52px) !important; }
+}
+</style>
+
+<script>
+function toggleMobileMenu() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+document.addEventListener('click', function(e) {
+  var menu = document.getElementById('mobileMenu');
+  var btn = document.querySelector('.nav-hamburger');
+  if (menu && btn && !menu.contains(e.target) && !btn.contains(e.target)) {
+    menu.classList.remove('open');
+  }
+});
+</script>
+</head>
+<body>
+
+<div class="announce">🌿 &nbsp; Tasting Room Open Wed – Sat · 3 to 8 PM · Tumwater Craft District · 21+ Only &nbsp; 🌿</div>
+
+<nav>
+  <a href="percival-creek-site.html" class="nav-logo">
+    <span class="nav-logo-top">PERCIVAL CREEK</span>
+    <span class="nav-logo-sub">Brewing · Cider · Distilling</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="percival-creek-shop.html">Shop</a></li>
+    <li><a href="percival-creek-beer.html">Beer</a></li>
+    <li><a href="percival-creek-cider.html">Cider</a></li>
+    <li><a href="percival-creek-spirits.html">Spirits</a></li>
+    <li><a href="percival-creek-tasting-room.html">Tasting Room</a></li>
+    <li><a href="percival-creek-about.html" class="active">Our Story</a></li>
+    <li><a href="percival-creek-facility.html">Facility</a></li>
+  </ul>
+  <div class="nav-actions" style="display:flex; gap:10px;">
+    <a href="percival-creek-contact.html" class="nav-btn" style="text-decoration:none; background:transparent; color:var(--forest); border:1.5px solid var(--forest);">Host a Private Event</a>
+    <button class="nav-btn" onclick="location.href='percival-creek-shop.html'">Shop Now</button>
+  </div>
+
+<button class="nav-hamburger" onclick="toggleMobileMenu()" aria-label="Open menu">
+  <span></span><span></span><span></span>
+</button>
+<div class="nav-mobile-menu" id="mobileMenu">
+  <a href="percival-creek-site.html">Home</a>
+  <a href="percival-creek-shop.html">Shop</a>
+  <a href="percival-creek-beer.html">Beer</a>
+  <a href="percival-creek-cider.html">Cider</a>
+  <a href="percival-creek-spirits.html">Spirits</a>
+  <a href="percival-creek-tasting-room.html">Tasting Room</a>
+  <a href="percival-creek-about.html">Our Story</a>
+  <a href="percival-creek-facility.html">Facility</a>
+  <a href="percival-creek-contact.html">Host a Private Event</a>
+</div>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-content">
+    <div class="breadcrumb">Home / Our Story</div>
+    <h1>Brewed with<br><em>Purpose.</em><br>Poured<br>with Pride.</h1>
+  </div>
+</section>
+
+<!-- STORY INTRO -->
+<section class="story-intro reveal">
+  <div class="story-intro-text">
+    <div class="section-eyebrow">Our Story</div>
+    <h2 class="section-title">More Than a<br>Beverage Company</h2>
+    <br>
+    <p class="section-body">Percival Creek is an undeniably worthy expression of the waters, flavors, and history of the Pacific Northwest's Tumwater Craft District.</p>
+    <br>
+    <p class="section-body">We didn't set out to just make good beer. We set out to prove that craft education, community investment, and exceptional quality could exist in the same bottle — and that every pour could mean something beyond the glass.</p>
+  </div>
+  <div class="story-intro-image">
+    <img src="students_distillery.jpg" alt="Percival Creek Tasting Room">
+  </div>
+</section>
+
+<!-- PULL QUOTE -->
+<div class="pull-quote reveal">
+  <div class="pull-quote-mark">"</div>
+  <div class="pull-quote-text">
+    <blockquote>The money we earn through the sale of Percival Creek products is reinvested into the program and its amazing students. Thank you for your support — and enjoy.</blockquote>
+    <cite>Percival Creek · Tumwater, WA</cite>
+  </div>
+</div>
+
+<!-- STORY CHAPTERS -->
+<section class="story-chapters">
+  <div class="chapter reveal">
+    <div class="chapter-number">01</div>
+    <div class="chapter-content">
+      <h3>The Waters We're Named For</h3>
+      <p>Percival Creek winds through the heart of Tumwater, Washington — carrying the spirit of a region shaped by clean water, fertile land, and generations of makers. We took our name from these waters because they represent what we stand for: something rooted, something real, and something worth preserving.</p>
+      <p>The Tumwater Craft District, where our tasting room and production facilities live, sits within a mile of the historic Olympia Brewery — one of the most iconic brewing sites in the Pacific Northwest. We're aware of our place in that lineage, and we take it seriously.</p>
+    </div>
+  </div>
+  <div class="chapter reveal">
+    <div class="chapter-number">02</div>
+    <div class="chapter-content">
+      <h3>A Collaboration Unlike Any Other</h3>
+      <p>Percival Creek is produced in partnership with South Puget Sound Community College's nationally recognized Craft Brewing & Distilling programs. Our students don't just study the craft — they live it. Every batch of beer, every cider pressing, every spirit run is led by students gaining real-world experience under professional guidance.</p>
+      <p>The result? Products that surprise people. Products that win over skeptics. Products made with the kind of care and enthusiasm you can actually taste.</p>
+    </div>
+  </div>
+  <div class="chapter reveal">
+    <div class="chapter-number">03</div>
+    <div class="chapter-content">
+      <h3>Every Purchase Does More</h3>
+      <p>When you buy Percival Creek, the money doesn't disappear into a corporate bottom line. It flows directly back into the SPSCC Craft Brewing & Distilling programs — funding equipment, scholarships, and opportunities for students who might not otherwise have access to careers in this industry.</p>
+      <p>So raise a glass. You're not just enjoying a great drink — you're helping build the next great generation of craft makers.</p>
+    </div>
+  </div>
+</section>
+
+<!-- GRAIN HANDS PHOTO BREAK -->
+<div style="width:100%; height:480px; overflow:hidden; position:relative;">
+  <img src="new_grain_hands.jpg" alt="Fresh grain at Percival Creek" style="width:100%; height:100%; object-fit:cover; object-position:center 40%;">
+  <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(30,58,34,0.15) 0%, rgba(30,58,34,0.5) 100%);"></div>
+  <div style="position:absolute; bottom:48px; left:80px; color:rgba(245,239,227,0.9); font-family:'Playfair Display',serif; font-style:italic; font-size:28px; letter-spacing:0.02em;">"It starts with the ingredients."</div>
+</div>
+
+<!-- VALUES -->
+<section class="values reveal">
+  <div class="values-header">
+    <div class="section-eyebrow">What We Stand For</div>
+    <h2 class="section-title" style="margin-top:12px;">Four Pillars,<br><em>One Mission</em></h2>
+  </div>
+  <div class="values-grid">
+    <div class="value-card">
+      <div class="value-icon">🎓</div>
+      <h4>Education</h4>
+      <p>We exist to teach. Every product we make is a lesson in craft, quality, and what's possible when students are given real tools and real responsibility.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-icon">⚖️</div>
+      <h4>Equity</h4>
+      <p>We believe great careers in craft beverage should be accessible to everyone, regardless of background or circumstance.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-icon">🌲</div>
+      <h4>Community</h4>
+      <p>We're rooted in Tumwater and the South Puget Sound. This place shapes what we make, and what we make gives back to this place.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-icon">⚗️</div>
+      <h4>Quality</h4>
+      <p>Student-made doesn't mean second-best. We hold ourselves to professional standards in every batch, every bottle, every pour.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAM SECTION -->
+<section class="program-section reveal">
+  <div class="program-image"></div>
+  <div class="program-text">
+    <div class="section-eyebrow">Our Academic Partner</div>
+    <h2 class="section-title">South Puget Sound<br><em>Community College</em></h2>
+    <br>
+    <p class="section-body">SPSCC's Craft Brewing & Distilling programs are nationally recognized for producing graduates who are ready to lead on day one. Courses cover everything from raw ingredients and fermentation science to business management, quality assurance, and sensory evaluation.</p>
+    <br>
+    <p class="section-body">If you've ever thought about turning your passion for craft beverages into a real career — this is where to start.</p>
+    <div class="program-stat-row">
+      <div class="program-stat"><h4>100%</h4><p>Profits Reinvested</p></div>
+      <div class="program-stat"><h4>2</h4><p>Degree Programs</p></div>
+      <div class="program-stat"><h4>~1mi</h4><p>From Olympia Brewery</p></div>
+    </div>
+    <a href="https://spscc.edu/food-beverage-arts-hospitality/craft-brewing-distilling" target="_blank" class="btn-primary">Explore the SPSCC Program →</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <span class="footer-brand-name">PERCIVAL CREEK</span>
+      <span class="footer-brand-sub">Brewing · Cider · Distilling</span>
+      <p>Rooted in Tumwater, Washington. A collaboration between craft professionals and the students of SPSCC's Craft Brewing & Distilling programs.</p>
+    </div>
+    <div class="footer-col"><h5>Shop</h5><ul><li><a href="percival-creek-shop.html">All Products</a></li><li><a href="percival-creek-beer.html">Beer</a></li><li><a href="percival-creek-cider.html">Cider</a></li><li><a href="percival-creek-spirits.html">Spirits</a></li></ul></div>
+    <div class="footer-col"><h5>Visit</h5><ul><li><a href="percival-creek-tasting-room.html">Tasting Room</a></li><li><a href="percival-creek-tasting-room.html">Hours & Location</a></li><li><a href="percival-creek-contact.html">Private Events</a></li><li><a href="percival-creek-contact.html">Wholesale</a></li></ul></div>
+    <div class="footer-col"><h5>Connect</h5><ul><li><a href="percival-creek-about.html">Our Story</a></li><li><a href="percival-creek-contact.html">Contact Us</a></li><li><a href="https://spscc.edu/food-beverage-arts-hospitality/craft-brewing-distilling">SPSCC Program</a></li><li><a href="/cdn-cgi/l/email-protection#fd94939b92bd8d988f9e948b9c919e8f989896d39e9290"><span class="__cf_email__" data-cfemail="b8d1d6ded7f8c8ddcadbd1ced9d4dbcaddddd396dbd7d5">[email&#160;protected]</span></a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Percival Creek Brewing, Cider & Distilling · Must be 21+ to purchase · Please drink responsibly.</p>
+    <div class="footer-social"><a href="https://www.instagram.com/percivalcreekwa/?hl=en" target="_blank" class="social-link">IG</a><a href="https://www.facebook.com/" target="_blank" class="social-link">FB</a></div>
+  </div>
+</footer>
+<script>
+document.querySelectorAll('.reveal').forEach(function(el) {
+  var io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  io.observe(el);
+});
+</script>
+</body>
+</html>

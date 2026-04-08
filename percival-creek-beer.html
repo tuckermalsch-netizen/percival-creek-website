@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beer — Percival Creek Brewing</title>
+<meta name="description" content="Student-crafted beers from Percival Creek Brewing in Tumwater, WA. Bohemian Pilsner, American Stout, Hazy IPA, and seasonal releases made by SPSCC students.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Karla:wght@300;400;500;600;700&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root { --forest:#1e3a22; --forest-light:#2c5430; --moss:#4a7c59; --gold:#c8932a; --gold-light:#e8b84b; --cream:#f5efe3; --cream-dark:#ede3d0; --bark:#3d2b1a; --mist:#8aab94; --white:#fdfaf5; --gray:#7a6a58; }
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { font-family:'Karla',sans-serif; background:var(--white); color:var(--bark); overflow-x:hidden; }
+.announce { background:var(--forest); color:var(--gold-light); text-align:center; padding:10px 20px; font-size:13px; letter-spacing:0.12em; font-weight:600; text-transform:uppercase; }
+nav { position:sticky; top:0; z-index:100; background:var(--white); border-bottom:1px solid rgba(30,58,34,0.1); display:flex; align-items:center; justify-content:space-between; padding:0 48px; height:72px; }
+.nav-logo { display:flex; flex-direction:column; line-height:1; text-decoration:none; }
+.nav-logo-top { font-family:'Cinzel',serif; font-size:18px; font-weight:700; color:var(--forest); letter-spacing:0.08em; }
+.nav-logo-sub { font-size:10px; letter-spacing:0.25em; color:var(--gold); text-transform:uppercase; font-weight:600; margin-top:2px; }
+.nav-links { display:flex; gap:32px; list-style:none; }
+.nav-links a { text-decoration:none; color:var(--bark); font-size:13px; letter-spacing:0.1em; text-transform:uppercase; font-weight:600; transition:color 0.2s; position:relative; }
+.nav-links a::after { content:''; position:absolute; bottom:-4px; left:0; width:0; height:2px; background:var(--gold); transition:width 0.3s; }
+.nav-links a:hover { color:var(--forest); }
+.nav-links a:hover::after, .nav-links a.active::after { width:100%; }
+.nav-links a.active { color:var(--forest); }
+.nav-btn { background:var(--forest); color:var(--cream); border:none; padding:10px 22px; font-family:'Karla',sans-serif; font-size:12px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; cursor:pointer; transition:background 0.2s; }
+.nav-btn:hover { background:var(--forest-light); }
+.nav-hamburger { display:none; }
+.nav-mobile-menu { display:none; }
+.section-eyebrow { font-size:11px; letter-spacing:0.3em; text-transform:uppercase; color:var(--gold); font-weight:700; margin-bottom:16px; display:flex; align-items:center; gap:12px; }
+.section-eyebrow::before { content:''; display:block; width:32px; height:1px; background:var(--gold); flex-shrink:0; }
+.section-title { font-family:'Playfair Display',serif; font-size:clamp(32px,4vw,54px); font-weight:700; color:var(--forest); line-height:1.1; letter-spacing:-0.02em; }
+.section-title em { font-style:italic; color:var(--moss); }
+.section-body { font-size:16px; color:var(--gray); line-height:1.85; font-weight:300; }
+.btn-primary { background:var(--gold); color:var(--forest); padding:16px 36px; font-family:'Karla',sans-serif; font-size:13px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; border:none; cursor:pointer; transition:all 0.25s; text-decoration:none; display:inline-block; }
+.btn-primary:hover { background:var(--gold-light); transform:translateY(-2px); box-shadow:0 8px 24px rgba(200,147,42,0.35); }
+.reveal { opacity:1; transform:translateY(0); transition:opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity:1; transform:translateY(0); }
+
+/* HERO */
+.collection-hero {
+  position:relative; height:72vh; min-height:520px; overflow:hidden;
+  display:flex; align-items:flex-end; padding-bottom:80px;
+}
+.collection-hero-bg {
+  position:absolute; inset:0;
+  background: linear-gradient(160deg, rgba(30,58,34,0.82) 0%, rgba(30,58,34,0.45) 55%, rgba(30,58,34,0.75) 100%),
+    url('new_copper_wide.jpg') center/cover no-repeat;
+  animation: hZoom 20s ease-in-out infinite alternate;
+}
+@keyframes hZoom { from{transform:scale(1)} to{transform:scale(1.05)} }
+.collection-hero::after {
+  content:''; position:absolute; bottom:-2px; left:0; right:0; height:90px;
+  background:var(--white); clip-path:polygon(0 55%, 100% 0, 100% 100%, 0 100%);
+}
+.collection-hero-content { position:relative; z-index:2; padding:0 80px; animation:fadeUp 1s ease both; }
+@keyframes fadeUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+.breadcrumb { font-size:11px; letter-spacing:0.25em; text-transform:uppercase; color:var(--gold-light); font-weight:600; margin-bottom:20px; opacity:0.8; }
+.collection-hero h1 { font-family:'Playfair Display',serif; font-size:clamp(56px,9vw,108px); font-weight:900; color:var(--white); line-height:0.9; letter-spacing:-0.03em; }
+.collection-hero h1 em { font-style:italic; color:var(--gold-light); display:block; }
+
+/* INTRO STRIP */
+.intro-strip {
+  background:var(--forest); padding:48px 80px;
+  display:grid; grid-template-columns:1fr 1fr 1fr; gap:0;
+}
+.intro-stat { padding:0 40px; border-right:1px solid rgba(255,255,255,0.08); text-align:center; }
+.intro-stat:first-child { padding-left:0; text-align:left; }
+.intro-stat:last-child { border-right:none; padding-right:0; text-align:right; }
+.intro-stat .num { font-family:'Playfair Display',serif; font-size:40px; font-weight:900; font-style:italic; color:var(--gold-light); line-height:1; }
+.intro-stat .lbl { font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:rgba(245,239,227,0.5); font-weight:600; margin-top:4px; }
+.intro-stat p { font-size:15px; color:rgba(245,239,227,0.7); font-weight:300; line-height:1.7; }
+
+/* PRODUCTS GRID */
+.products-section { padding:80px 80px 100px; }
+.products-header { display:grid; grid-template-columns:1fr auto; align-items:end; margin-bottom:56px; gap:40px; }
+.products-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+
+/* PRODUCT CARDS */
+.product-card { background:var(--white); cursor:pointer; transition:transform 0.3s,box-shadow 0.3s; position:relative; overflow:hidden; border:1px solid var(--cream-dark); }
+.product-card:hover { transform:translateY(-6px); box-shadow:0 20px 48px rgba(30,58,34,0.12); border-color:transparent; }
+.product-img { height:300px; overflow:hidden; position:relative; background:var(--cream); display:flex; align-items:center; justify-content:center; }
+.product-img img { width:100%; height:100%; object-fit:cover; transition:transform 0.5s; }
+.product-card:hover .product-img img { transform:scale(1.05); }
+.product-tag { position:absolute; top:14px; left:14px; background:var(--forest); color:var(--gold-light); font-size:9px; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; padding:5px 10px; z-index:2; }
+.product-tag.seasonal { background:var(--moss); color:var(--white); }
+.product-tag.core { background:var(--gold); color:var(--forest); }
+.product-quick { position:absolute; bottom:-48px; left:0; right:0; background:var(--forest); color:var(--gold-light); text-align:center; padding:14px; font-size:11px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; transition:bottom 0.3s; z-index:2; }
+.product-card:hover .product-quick { bottom:0; }
+.product-info { padding:24px 26px 28px; }
+.product-style { font-size:10px; color:var(--mist); letter-spacing:0.2em; text-transform:uppercase; font-weight:600; margin-bottom:6px; }
+.product-name { font-family:'Playfair Display',serif; font-size:24px; font-weight:700; color:var(--forest); margin-bottom:10px; line-height:1.15; }
+.product-desc { font-size:14px; color:var(--gray); line-height:1.7; margin-bottom:16px; font-weight:300; }
+.tasting-notes { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:18px; }
+.tnote { font-size:10px; color:var(--moss); background:rgba(74,124,89,0.1); padding:4px 10px; letter-spacing:0.05em; font-weight:500; }
+.product-footer { display:flex; align-items:center; justify-content:space-between; padding-top:16px; border-top:1px solid var(--cream-dark); }
+.product-price { font-family:'Cinzel',serif; font-size:20px; color:var(--forest); font-weight:600; }
+.add-btn { background:var(--forest); color:var(--cream); border:none; padding:11px 20px; font-family:'Karla',sans-serif; font-size:11px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; cursor:pointer; transition:all 0.2s; }
+.add-btn:hover { background:var(--gold); color:var(--forest); }
+
+/* BREWING STORY BAND */
+.story-band {
+  display:grid; grid-template-columns:1fr 1fr;
+  min-height:520px;
+}
+.story-band-image {
+  background: linear-gradient(135deg, rgba(30,58,34,0.15) 0%, rgba(30,58,34,0.5) 100%),
+    url('new_tank_row.jpg') center/cover;
+  position:relative; overflow:hidden;
+}
+.story-band-image::after {
+  content:'"IT'S THE WATER"';
+  position:absolute; bottom:32px; left:32px;
+  font-family:'Playfair Display',serif; font-style:italic;
+  font-size:20px; color:rgba(245,239,227,0.7);
+  letter-spacing:0.05em;
+}
+.story-band-text { background:var(--forest); padding:80px 72px; display:flex; flex-direction:column; justify-content:center; }
+.story-band-text .section-eyebrow { color:var(--gold); }
+.story-band-text .section-eyebrow::before { background:var(--gold); }
+.story-band-text .section-title { color:var(--white); margin:12px 0 24px; }
+.story-band-text .section-title em { color:var(--gold-light); }
+.story-band-text .section-body { color:rgba(245,239,227,0.7); margin-bottom:16px; }
+.process-steps { margin:32px 0 36px; display:flex; flex-direction:column; gap:16px; }
+.process-step-item { display:flex; gap:16px; align-items:flex-start; }
+.step-num { font-family:'Playfair Display',serif; font-size:28px; font-style:italic; font-weight:900; color:rgba(200,147,42,0.3); line-height:1; flex-shrink:0; width:36px; }
+.step-text h5 { font-size:12px; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold-light); font-weight:700; margin-bottom:3px; }
+.step-text p { font-size:13px; color:rgba(245,239,227,0.6); font-weight:300; line-height:1.5; }
+
+/* BARREL FEATURE */
+.barrel-feature {
+  position:relative; min-height:380px; overflow:hidden;
+  display:flex; align-items:center;
+  background: linear-gradient(100deg, rgba(61,43,26,0.92) 0%, rgba(61,43,26,0.6) 60%, rgba(30,58,34,0.8) 100%),
+    url('new_barrel_warm.jpg') center/cover;
+}
+.barrel-feature-content { position:relative; z-index:2; padding:80px; max-width:640px; }
+.barrel-feature-content .section-eyebrow { color:var(--gold-light); }
+.barrel-feature-content .section-eyebrow::before { background:var(--gold-light); }
+.barrel-feature-content .section-title { color:var(--white); margin:12px 0 20px; font-size:38px; }
+.barrel-feature-content .section-title em { color:var(--gold-light); }
+.barrel-feature-content p { font-size:16px; color:rgba(245,239,227,0.75); line-height:1.75; font-weight:300; }
+
+/* CTA STRIP */
+.cta-strip { background:var(--cream); padding:64px 80px; display:flex; justify-content:space-between; align-items:center; gap:40px; }
+.cta-strip-text h3 { font-family:'Playfair Display',serif; font-size:30px; font-weight:700; color:var(--forest); margin-bottom:8px; }
+.cta-strip-text p { font-size:15px; color:var(--gray); font-weight:300; }
+.cta-strip-btns { display:flex; gap:16px; flex-shrink:0; }
+.btn-outline { background:transparent; color:var(--forest); padding:15px 34px; border:1.5px solid var(--forest); font-family:'Karla',sans-serif; font-size:13px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; cursor:pointer; transition:all 0.25s; text-decoration:none; display:inline-block; }
+.btn-outline:hover { background:var(--forest); color:var(--cream); }
+
+/* FOOTER */
+footer { background:var(--bark); color:var(--cream); padding:80px 80px 40px; }
+.footer-grid { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:60px; margin-bottom:64px; }
+.footer-brand-name { font-family:'Cinzel',serif; font-size:22px; font-weight:700; color:var(--white); display:block; margin-bottom:4px; }
+.footer-brand-sub { font-size:10px; letter-spacing:0.25em; color:var(--gold); text-transform:uppercase; font-weight:600; display:block; margin-bottom:20px; }
+.footer-brand p { font-size:14px; color:rgba(245,239,227,0.6); line-height:1.8; font-weight:300; max-width:280px; }
+.footer-col h5 { font-family:'Cinzel',serif; font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin-bottom:20px; }
+.footer-col ul { list-style:none; }
+.footer-col li { margin-bottom:10px; }
+.footer-col a { text-decoration:none; font-size:14px; color:rgba(245,239,227,0.6); transition:color 0.2s; font-weight:300; }
+.footer-col a:hover { color:var(--gold-light); }
+.footer-bottom { border-top:1px solid rgba(245,239,227,0.1); padding-top:32px; display:flex; align-items:center; justify-content:space-between; }
+.footer-bottom p { font-size:12px; color:rgba(245,239,245,0.4); }
+.footer-social { display:flex; gap:16px; }
+.social-link { width:36px; height:36px; border:1px solid rgba(245,239,227,0.2); display:flex; align-items:center; justify-content:center; text-decoration:none; font-size:12px; color:rgba(245,239,245,0.5); transition:all 0.2s; font-weight:700; }
+.social-link:hover { border-color:var(--gold); color:var(--gold-light); }
+
+.experience-images { grid-template-columns: 1fr !important; }
+  .stats-bar { grid-template-columns: 1fr !important; }
+  .distillery-stats { gap: 16px; }
+  .dstat { flex: 1 1 100%; text-align: center; }
+  .hero-title { font-size: clamp(36px, 10vw, 56px) !important; }
+}
+
+
+  }
+</style>
+
+<style>
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
+
+  /* NAV - hide desktop links and buttons, show hamburger */
+  nav { padding: 0 16px; height: 60px; position: relative; }
+  .nav-logo-top { font-size: 14px; }
+  .nav-logo-sub { font-size: 8px; }
+  .nav-links { display: none !important; }
+  .nav-actions { display: none !important; }
+  .nav-hamburger {
+    display: flex !important;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 8px;
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 200;
+  }
+  .nav-hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--forest);
+    transition: all 0.3s;
+  }
+  .nav-mobile-menu {
+    display: none;
+    position: fixed;
+    top: 60px;
+    left: 0;
+    right: 0;
+    background: var(--white);
+    border-top: 2px solid var(--gold);
+    z-index: 199;
+    padding: 8px 0 24px;
+    box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+    flex-direction: column;
+  }
+  .nav-mobile-menu.open { display: flex; }
+  .nav-mobile-menu a {
+    display: block;
+    padding: 14px 24px;
+    font-family: 'Karla', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--forest);
+    text-decoration: none;
+    border-bottom: 1px solid var(--cream-dark);
+  }
+  .nav-mobile-menu a:last-child { border-bottom: none; color: var(--gold); }
+
+  /* ANNOUNCE */
+  .announce { font-size: 10px; padding: 7px 12px; letter-spacing: 0.06em; }
+
+  /* HERO */
+  .hero { min-height: 80vh; }
+  .hero-content { padding: 0 24px !important; }
+  .collection-hero { height: 60vh; min-height: 400px; padding-bottom: 40px; }
+  .collection-hero-content { padding: 0 24px !important; }
+  .collection-hero h1 { font-size: clamp(40px, 11vw, 64px) !important; }
+  .collection-hero::after { height: 40px; }
+  .page-hero { min-height: 300px; }
+  .facility-hero-content,
+  .tasting-hero-content { padding: 0 24px !important; }
+
+  /* SECTIONS */
+  section { padding-left: 24px !important; padding-right: 24px !important; }
+  .intro-strip,
+  .origin-strip,
+  .products-section,
+  .story-intro,
+  .story-chapters,
+  .values,
+  .program-section,
+  .cider-process,
+  .distillery-intro,
+  .still-feature,
+  .story-band,
+  .cta-strip,
+  .mission-section,
+  .barrel-feature,
+  .tanks-band,
+  .cocktail-band,
+  .footer-grid { padding-left: 24px !important; padding-right: 24px !important; }
+
+  /* ALL GRIDS → 1 column */
+  .intro-strip,
+  .origin-strip,
+  .story-intro,
+  .program-section,
+  .story-band,
+  .still-feature,
+  .distillery-intro,
+  .cider-process,
+  .mission-grid,
+  .facility-overview,
+  .overview-grid,
+  .distillery-section,
+  .contract-grid,
+  .footer-grid,
+  .about-split,
+  .hours-grid,
+  .map-section,
+  .private-events,
+  .contact-grid { grid-template-columns: 1fr !important; }
+
+  /* STATS */
+  .stats-bar { grid-template-columns: 1fr 1fr !important; }
+  .stat-item { padding: 20px 12px !important; border-right: none !important; border-bottom: 1px solid rgba(255,255,255,0.1); }
+
+  /* CTA STRIP */
+  .cta-strip { flex-direction: column !important; gap: 20px !important; padding: 40px 24px !important; text-align: center; }
+  .cta-strip-btns { flex-direction: column; width: 100%; gap: 12px; }
+  .cta-strip-btns a,
+  .cta-strip-btns button { width: 100%; text-align: center; box-sizing: border-box; }
+
+  /* VALUES */
+  .values-grid { grid-template-columns: 1fr 1fr !important; gap: 12px !important; }
+  .value-card { padding: 20px 16px !important; }
+
+  /* PRODUCTS GRID */
+  .products-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
+  .product-card.featured { grid-column: span 1 !important; }
+  .product-card.featured .product-img { height: 240px !important; }
+  .product-img { height: 200px !important; }
+  .product-info { padding: 16px 18px 20px !important; }
+  .product-footer { flex-wrap: wrap; gap: 10px; }
+
+  /* CAT CARDS */
+  .cat-cards { grid-template-columns: 1fr !important; }
+  .cat-card { height: 200px !important; }
+
+  /* BANNERS */
+  .banner-section { flex-direction: column !important; }
+  .banner-half { min-height: 200px !important; width: 100% !important; }
+
+  /* IMAGE PANELS */
+  .story-intro-image,
+  .story-band-image,
+  .distillery-intro-image,
+  .still-feature-image,
+  .about-image,
+  .program-image { min-height: 220px !important; }
+
+  /* TEXT SECTIONS */
+  .story-band-text,
+  .program-text,
+  .distillery-intro-text,
+  .still-feature-text,
+  .cf-text { padding: 40px 24px !important; }
+  .barrel-feature-content { padding: 40px 24px !important; }
+  .process-right { grid-template-columns: 1fr 1fr !important; gap: 12px !important; }
+  .still-specs { grid-template-columns: 1fr 1fr !important; gap: 10px !important; }
+
+  /* SECTION TITLES */
+  .section-title { font-size: clamp(26px, 6vw, 38px) !important; }
+
+  /* SHOP SIDEBAR */
+  .shop-body { grid-template-columns: 1fr !important; }
+  .shop-layout { grid-template-columns: 1fr !important; }
+  .shop-sidebar { display: none !important; }
+  .filter-bar { overflow-x: auto; white-space: nowrap; padding: 0 24px; -webkit-overflow-scrolling: touch; }
+  .filter-btn { flex-shrink: 0; font-size: 11px; padding: 10px 14px; }
+
+  /* EXPERIENCE GRID */
+  .experience-images { grid-template-columns: 1fr 1fr !important; }
+
+  /* COLLECTION FEATURE */
+  .collection-feature { flex-direction: column !important; }
+  .cf-image { min-height: 200px; flex: none !important; width: 100% !important; }
+
+  /* SPIRITS */
+  .distillery-stats { flex-wrap: wrap; gap: 16px; }
+  .dstat { flex: 1 1 45%; text-align: center; }
+
+  /* FOOTER */
+  footer { padding: 40px 24px 28px !important; }
+  .footer-grid { gap: 28px !important; margin-bottom: 28px !important; }
+  .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+  .footer-brand p { max-width: 100% !important; }
+
+  /* BUTTONS */
+
+  /* ── SHOP: fix class-name mismatch ── */
+  .shop-body { grid-template-columns: 1fr !important; }
+
+  /* ── GRIDS missed in original pass ── */
+  .chapter { grid-template-columns: 1fr !important; gap: 20px !important; }
+  .chapter-number { font-size: 40px !important; margin-bottom: 0; }
+  .products-header { grid-template-columns: 1fr !important; gap: 12px !important; }
+  .form-row { grid-template-columns: 1fr !important; gap: 16px !important; }
+  .info-hours { grid-template-columns: 1fr 1fr !important; }
+  .contact-hero-inner { grid-template-columns: 1fr !important; gap: 40px !important; }
+
+  /* ── FACILITY ── */
+  .facility-overview-images { grid-template-columns: 1fr 1fr !important; grid-template-rows: 160px 120px !important; }
+  .spec-list { grid-template-columns: 1fr !important; }
+  .brewery-header,
+  .distillery-header { grid-template-columns: 1fr !important; gap: 20px !important; margin-bottom: 32px !important; }
+  .brewery-capabilities { grid-template-columns: 1fr 1fr !important; }
+  .distillery-equipment { grid-template-columns: 1fr 1fr !important; }
+  .distillery-process { grid-template-columns: 1fr 1fr !important; }
+  .process-step { border-right: none !important; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .contract-hero-inner,
+  .contract-cta-inner { grid-template-columns: 1fr !important; gap: 36px !important; }
+  .benefits-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
+  .cp-steps { grid-template-columns: 1fr 1fr !important; }
+  .contract-benefits,
+  .contract-process { padding: 40px 24px !important; }
+  .brewery-section,
+  .distillery-section { padding: 48px 24px !important; }
+  .contract-hero-band { padding: 48px 24px !important; }
+
+  /* ── TASTING ROOM ── */
+  .experience { padding: 48px 24px !important; }
+  .experience-images { grid-template-rows: 200px 140px !important; }
+  .tap-list { padding: 48px 24px !important; }
+  .tap-grid { grid-template-columns: 1fr 1fr !important; }
+  .visit-info { grid-template-columns: 1fr !important; }
+  .visit-address { padding: 40px 24px !important; }
+  .events { padding: 48px 24px !important; }
+  .events-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
+  .event-card { grid-template-columns: 80px 1fr !important; }
+  .private-events-content { padding: 40px 24px !important; }
+
+  /* ── CONTACT ── */
+  .contact-form-section,
+  .contact-info-section { padding: 40px 24px !important; }
+
+  /* ── SHARED SECTION PADDING ── */
+  .distillery-inner { padding: 48px 24px !important; }
+  .facility-overview { padding: 48px 24px !important; }
+
+  .btn-primary,
+  .btn-outline,
+  .btn-outline-dark { padding: 13px 24px !important; font-size: 11px !important; }
+}
+
+@media (max-width: 480px) {
+  .values-grid { grid-template-columns: 1fr !important; }
+  .process-right { grid-template-columns: 1fr !important; }
+  .experience-images { grid-template-columns: 1fr !important; }
+  .stats-bar { grid-template-columns: 1fr 1fr !important; }
+  .dstat { flex: 1 1 100%; }
+  .collection-hero h1 { font-size: clamp(34px, 10vw, 52px) !important; }
+}
+</style>
+
+<script>
+function toggleMobileMenu() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+document.addEventListener('click', function(e) {
+  var menu = document.getElementById('mobileMenu');
+  var btn = document.querySelector('.nav-hamburger');
+  if (menu && btn && !menu.contains(e.target) && !btn.contains(e.target)) {
+    menu.classList.remove('open');
+  }
+});
+</script>
+</head>
+<body>
+
+<div class="announce">🌿 &nbsp; Tasting Room Open Wed – Sat · 3 to 8 PM · Tumwater Craft District · 21+ Only &nbsp; 🌿</div>
+
+<nav>
+  <a href="percival-creek-site.html" class="nav-logo">
+    <span class="nav-logo-top">PERCIVAL CREEK</span>
+    <span class="nav-logo-sub">Brewing · Cider · Distilling</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="percival-creek-shop.html">Shop</a></li>
+    <li><a href="percival-creek-beer.html" class="active">Beer</a></li>
+    <li><a href="percival-creek-cider.html">Cider</a></li>
+    <li><a href="percival-creek-spirits.html">Spirits</a></li>
+    <li><a href="percival-creek-tasting-room.html">Tasting Room</a></li>
+    <li><a href="percival-creek-about.html">Our Story</a></li>
+    <li><a href="percival-creek-facility.html">Facility</a></li>
+  </ul>
+  <div class="nav-actions" style="display:flex; gap:10px;">
+    <a href="percival-creek-contact.html" class="nav-btn" style="text-decoration:none; background:transparent; color:var(--forest); border:1.5px solid var(--forest);">Host a Private Event</a>
+    <button class="nav-btn" onclick="location.href='percival-creek-shop.html'">Shop Now</button>
+  </div>
+
+<button class="nav-hamburger" onclick="toggleMobileMenu()" aria-label="Open menu">
+  <span></span><span></span><span></span>
+</button>
+<div class="nav-mobile-menu" id="mobileMenu">
+  <a href="percival-creek-site.html">Home</a>
+  <a href="percival-creek-shop.html">Shop</a>
+  <a href="percival-creek-beer.html">Beer</a>
+  <a href="percival-creek-cider.html">Cider</a>
+  <a href="percival-creek-spirits.html">Spirits</a>
+  <a href="percival-creek-tasting-room.html">Tasting Room</a>
+  <a href="percival-creek-about.html">Our Story</a>
+  <a href="percival-creek-facility.html">Facility</a>
+  <a href="percival-creek-contact.html">Host a Private Event</a>
+</div>
+</nav>
+
+<!-- HERO -->
+<section class="collection-hero">
+  <div class="collection-hero-bg"></div>
+  <div class="collection-hero-content">
+    <div class="breadcrumb">Home / Shop / Beer</div>
+    <h1>Percival Creek<br><em>Brewing</em></h1>
+  </div>
+</section>
+
+<!-- INTRO STRIP -->
+<div class="intro-strip">
+  <div class="intro-stat">
+    <p>Student-crafted beers made with commercial-grade equipment, real ingredients, and an uncommon level of care. Every batch brewed and packaged on-site in Tumwater, WA.</p>
+  </div>
+  <div class="intro-stat">
+    <div class="num">15<small style="font-size:18px;font-style:normal">bbl</small></div>
+    <div class="lbl">Brewhouse Capacity</div>
+  </div>
+  <div class="intro-stat" style="text-align:right">
+    <div class="num">100%</div>
+    <div class="lbl">Profits to SPSCC</div>
+  </div>
+</div>
+
+<!-- PRODUCTS -->
+<section class="products-section">
+  <div class="products-header reveal">
+    <div>
+      <div class="section-eyebrow">Percival Creek Brewing</div>
+      <h2 class="section-title">Our <em>Beers</em></h2>
+    </div>
+    <a href="percival-creek-shop.html" class="btn-outline">View All Products</a>
+  </div>
+
+  <div class="products-grid">
+
+    <!-- BOHEMIAN PILSNER -->
+    <div class="product-card reveal">
+      <div class="product-img">
+        <img src="can_pilsner.jpg" alt="Bohemian Pilsner">
+        <div class="product-tag core">Core</div>
+        
+      </div>
+      <div class="product-info">
+        <div class="product-style">Czech-Style Pilsner</div>
+        <div class="product-name">Bohemian Pilsner</div>
+        <div class="tasting-notes">
+          <span class="tnote">Crisp</span><span class="tnote">Floral</span><span class="tnote">Clean Malt</span><span class="tnote">Light Hop</span>
+        </div>
+        <div class="product-desc">The most honest beer we make. Pale malt, noble hops, precise fermentation — and nothing more. A Czech-style pilsner that rewards patience and precision in equal measure.</div>
+        <div class="product-footer">
+          <div class="product-price">$12.99 / 6pk</div>
+          <div id='product-component-1775504206662'></div>
+<script type="text/javascript">
+/*<![CDATA[*/
+(function () {
+  var scriptURL = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js';
+  if (window.ShopifyBuy) { if (window.ShopifyBuy.UI) { ShopifyBuyInit(); } else { loadScript(); } } else { loadScript(); }
+  function loadScript() { var script = document.createElement('script'); script.async = true; script.src = scriptURL; (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(script); script.onload = ShopifyBuyInit; }
+  function ShopifyBuyInit() {
+    var client = ShopifyBuy.buildClient({ domain: 'percival-creek-brewing.myshopify.com', storefrontAccessToken: '79abc6c477c6a6f57bc7ac0a75057462' });
+    ShopifyBuy.UI.onReady(client).then(function (ui) {
+      ui.createComponent('product', {
+        id: '9092556259566',
+        variantId: '47801010716910',
+        node: document.getElementById('product-component-1775504206662'),
+        moneyFormat: '%24%7B%7Bamount%7D%7D',
+        options: {
+          "product": {
+            "styles": { "product": { "@media (min-width: 601px)": { "max-width": "calc(25% - 20px)", "margin-left": "20px", "margin-bottom": "50px" } } },
+            "contents": { "img": false, "title": false, "price": false, "options": false },
+            "text": { "button": "Add to cart" }
+          },
+          "modalProduct": {
+            "contents": { "img": false, "imgWithCarousel": true, "button": false, "buttonWithQuantity": true },
+            "styles": { "product": { "@media (min-width: 601px)": { "max-width": "100%", "margin-left": "0px", "margin-bottom": "0px" } } },
+            "text": { "button": "Add to cart" }
+          },
+          "option": {},
+          "cart": { "text": { "total": "Subtotal", "button": "Checkout" } },
+          "toggle": {}
+        }
+      });
+    });
+  }
+})();
+/*]]>*/
+</script>
+        </div>
+      </div>
+    </div>
+
+    <!-- AMERICAN STOUT -->
+    <div class="product-card reveal">
+      <div class="product-img">
+        <img src="can_american_stout.jpg" alt="American Stout">
+        <div class="product-tag core">Core</div>
+        
+      </div>
+      <div class="product-info">
+        <div class="product-style">American Stout</div>
+        <div class="product-name">American Stout</div>
+        <div class="tasting-notes">
+          <span class="tnote">Dark Roast</span><span class="tnote">Chocolate</span><span class="tnote">Full Body</span><span class="tnote">Dry Finish</span>
+        </div>
+        <div class="product-desc">Dark, roasty, and built for the Pacific Northwest. Layers of roasted barley, bittersweet chocolate, and a dry, satisfying finish. More approachable than it looks.</div>
+        <div class="product-footer">
+          <div class="product-price">$12.99 / 6pk</div>
+          <div id='product-component-1775503983716'></div>
+<script type="text/javascript">
+/*<![CDATA[*/
+(function () {
+  var scriptURL = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js';
+  if (window.ShopifyBuy) {
+    if (window.ShopifyBuy.UI) {
+      ShopifyBuyInit();
+    } else {
+      loadScript();
+    }
+  } else {
+    loadScript();
+  }
+  function loadScript() {
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = scriptURL;
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(script);
+    script.onload = ShopifyBuyInit;
+  }
+  function ShopifyBuyInit() {
+    var client = ShopifyBuy.buildClient({
+      domain: 'percival-creek-brewing.myshopify.com',
+      storefrontAccessToken: '79abc6c477c6a6f57bc7ac0a75057462',
+    });
+    ShopifyBuy.UI.onReady(client).then(function (ui) {
+      ui.createComponent('product', {
+        id: '9092567204078',
+        variantId: '47801010389230',
+        node: document.getElementById('product-component-1775503983716'),
+        moneyFormat: '%24%7B%7Bamount%7D%7D',
+        options: {
+  "product": {
+    "styles": {
+      "product": {
+        "@media (min-width: 601px)": {
+          "max-width": "calc(25% - 20px)",
+          "margin-left": "20px",
+          "margin-bottom": "50px"
+        }
+      }
+    },
+    "contents": {
+      "img": false,
+      "title": false,
+      "price": false,
+      "options": false
+    },
+    "text": {
+      "button": "Add to cart"
+    }
+  },
+  "productSet": {
+    "styles": {
+      "products": {
+        "@media (min-width: 601px)": {
+          "margin-left": "-20px"
+        }
+      }
+    }
+  },
+  "modalProduct": {
+    "contents": {
+      "img": false,
+      "imgWithCarousel": true,
+      "button": false,
+      "buttonWithQuantity": true
+    },
+    "styles": {
+      "product": {
+        "@media (min-width: 601px)": {
+          "max-width": "100%",
+          "margin-left": "0px",
+          "margin-bottom": "0px"
+        }
+      }
+    },
+    "text": {
+      "button": "Add to cart"
+    }
+  },
+  "option": {},
+  "cart": {
+    "text": {
+      "total": "Subtotal",
+      "button": "Checkout"
+    }
+  },
+  "toggle": {}
+},
+      });
+    });
+  }
+})();
+/*]]>*/
+</script>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEASONAL -->
+    <!-- HAZY IPA -->
+    <div class="product-card reveal">
+      <div class="product-img">
+        <img src="can_hazy_ipa.jpg" alt="Hazy IPA">
+        <div class="product-tag seasonal">New</div>
+        
+      </div>
+      <div class="product-info">
+        <div class="product-style">Hazy IPA</div>
+        <div class="product-name">Hazy IPA</div>
+        <div class="tasting-notes">
+          <span class="tnote">Hazy</span><span class="tnote">Tropical</span><span class="tnote">Juicy</span><span class="tnote">Soft Bitterness</span>
+        </div>
+        <div class="product-desc">Unfiltered and unapologetic. Tropical fruit aromatics, a pillowy soft mouthfeel, and just enough bitterness to remind you it's still an IPA. Brewed by students who take their hops seriously.</div>
+        <div class="product-footer">
+          <div class="product-price">$12.99 / 6pk</div>
+          <div id='product-component-1775504274536'></div>
+<script type="text/javascript">
+/*<![CDATA[*/
+(function () {
+  var scriptURL = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js';
+  if (window.ShopifyBuy) { if (window.ShopifyBuy.UI) { ShopifyBuyInit(); } else { loadScript(); } } else { loadScript(); }
+  function loadScript() { var script = document.createElement('script'); script.async = true; script.src = scriptURL; (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(script); script.onload = ShopifyBuyInit; }
+  function ShopifyBuyInit() {
+    var client = ShopifyBuy.buildClient({ domain: 'percival-creek-brewing.myshopify.com', storefrontAccessToken: '79abc6c477c6a6f57bc7ac0a75057462' });
+    ShopifyBuy.UI.onReady(client).then(function (ui) {
+      ui.createComponent('product', {
+        id: '9092563108078',
+        variantId: '47801010618606',
+        node: document.getElementById('product-component-1775504274536'),
+        moneyFormat: '%24%7B%7Bamount%7D%7D',
+        options: {
+          "product": {
+            "styles": { "product": { "@media (min-width: 601px)": { "max-width": "calc(25% - 20px)", "margin-left": "20px", "margin-bottom": "50px" } } },
+            "contents": { "img": false, "title": false, "price": false, "options": false },
+            "text": { "button": "Add to cart" }
+          },
+          "modalProduct": {
+            "contents": { "img": false, "imgWithCarousel": true, "button": false, "buttonWithQuantity": true },
+            "styles": { "product": { "@media (min-width: 601px)": { "max-width": "100%", "margin-left": "0px", "margin-bottom": "0px" } } },
+            "text": { "button": "Add to cart" }
+          },
+          "option": {},
+          "cart": { "text": { "total": "Subtotal", "button": "Checkout" } },
+          "toggle": {}
+        }
+      });
+    });
+  }
+})();
+/*]]>*/
+</script>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEASONAL -->
+    <div class="product-card reveal">
+      <div class="product-img" style="background:var(--forest); display:flex; align-items:center; justify-content:center; flex-direction:column; gap:12px;">
+        <div style="font-size:48px;">🍺</div>
+        <div style="font-family:'Playfair Display',serif; font-style:italic; font-size:18px; color:var(--gold-light); text-align:center; padding:0 20px;">Seasonal Release</div>
+        <div style="font-size:12px; color:rgba(245,239,227,0.5); letter-spacing:0.15em; text-transform:uppercase;">Rotating</div>
+      </div>
+      <div class="product-info">
+        <div class="product-style">Seasonal · Rotating</div>
+        <div class="product-name">Ask What's Brewing</div>
+        <div class="tasting-notes">
+          <span class="tnote">Seasonal</span><span class="tnote">Limited</span><span class="tnote">Student Choice</span>
+        </div>
+        <div class="product-desc">Our students are always experimenting. From sessionable spring ales to rich winter warmers, our seasonal lineup changes with the calendar and the creativity of the class.</div>
+        <div class="product-footer">
+          <div class="product-price">Varies</div>
+          <a href="percival-creek-tasting-room.html" class="add-btn" style="text-decoration:none;">See Tap List</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- BREWING STORY BAND -->
+<div class="story-band reveal">
+  <div class="story-band-image"></div>
+  <div class="story-band-text">
+    <div class="section-eyebrow">How We Brew</div>
+    <h2 class="section-title">No Shortcuts.<br><em>Ever.</em></h2>
+    <p class="section-body">Our 15-barrel brewhouse isn't a teaching tool — it's a professional production facility. Every batch our students brew meets the same standards you'd find at any respected craft brewery in the region.</p>
+    <div class="process-steps">
+      <div class="process-step-item">
+        <div class="step-num">01</div>
+        <div class="step-text"><h5>Milling & Mashing</h5><p>Fresh-milled grain, multi-step temperature mashing, and precise wort collection.</p></div>
+      </div>
+      <div class="process-step-item">
+        <div class="step-num">02</div>
+        <div class="step-text"><h5>Boiling & Hopping</h5><p>High-efficiency kettle, whirlpool hopping, and late dry-hop additions for aroma.</p></div>
+      </div>
+      <div class="process-step-item">
+        <div class="step-num">03</div>
+        <div class="step-text"><h5>Fermentation & QA</h5><p>Glycol-controlled unitanks, full lab testing, and sensory panel sign-off before packaging.</p></div>
+      </div>
+      <div class="process-step-item">
+        <div class="step-num">04</div>
+        <div class="step-text"><h5>Canned On-Site</h5><p>In-house canning line. 12 oz and 16 oz formats. DO-monitored for freshness.</p></div>
+      </div>
+    </div>
+    <a href="percival-creek-facility.html" class="btn-primary">Tour the Brewery →</a>
+  </div>
+</div>
+
+<!-- BARREL FEATURE -->
+<div class="barrel-feature reveal">
+  <div class="barrel-feature-content">
+    <div class="section-eyebrow">Barrel Program</div>
+    <h3 class="section-title">Oak-Aged &amp; <em>On-Site</em></h3>
+    <p>We maintain an active barrel aging program — bourbon barrels, wine barrels, and new American oak — for limited-edition releases that showcase what our students are capable of when given time and latitude. Ask about our current barrel-aged offerings in the tasting room.</p>
+  </div>
+</div>
+
+<!-- CTA STRIP -->
+<div class="cta-strip reveal">
+  <div class="cta-strip-text">
+    <h3>Prefer to drink it fresh?</h3>
+    <p>Everything on our tap list is available in the tasting room, Wed – Sat, 3 – 8 PM.</p>
+  </div>
+  <div class="cta-strip-btns">
+    <a href="percival-creek-tasting-room.html" class="btn-primary">Visit the Tasting Room</a>
+    <a href="percival-creek-cider.html" class="btn-outline">Explore Our Ciders →</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand"><span class="footer-brand-name">PERCIVAL CREEK</span><span class="footer-brand-sub">Brewing · Cider · Distilling</span><p>Rooted in Tumwater, Washington. A collaboration between craft professionals and the students of SPSCC's Craft Brewing &amp; Distilling programs.</p></div>
+    <div class="footer-col"><h5>Shop</h5><ul><li><a href="percival-creek-shop.html">All Products</a></li><li><a href="percival-creek-beer.html">Beer</a></li><li><a href="percival-creek-cider.html">Cider</a></li><li><a href="percival-creek-spirits.html">Spirits</a></li></ul></div>
+    <div class="footer-col"><h5>Visit</h5><ul><li><a href="percival-creek-tasting-room.html">Tasting Room</a></li><li><a href="percival-creek-tasting-room.html">Hours &amp; Location</a></li><li><a href="percival-creek-contact.html">Private Events</a></li><li><a href="percival-creek-facility.html">Our Facility</a></li></ul></div>
+    <div class="footer-col"><h5>Connect</h5><ul><li><a href="percival-creek-about.html">Our Story</a></li><li><a href="percival-creek-contact.html">Contact Us</a></li><li><a href="https://spscc.edu/food-beverage-arts-hospitality/craft-brewing-distilling">SPSCC Program</a></li><li><a href="/cdn-cgi/l/email-protection#82ebece4edc2f2e7f0e1ebf4e3eee1f0e7e7e9ace1edef"><span class="__cf_email__" data-cfemail="50393e363f10203522333926313c332235353b7e333f3d">[email&#160;protected]</span></a></li></ul></div>
+    <div class="footer-col"><h5>More</h5><ul><li><a href="percival-creek-facility.html">Facility &amp; Contract</a></li><li><a href="percival-creek-contact.html">Wholesale</a></li><li><a href="/cdn-cgi/l/email-protection#ed9e8c81889ead9d889f8e849b8c818e9f888886c38e8280"><span class="__cf_email__" data-cfemail="dcafbdb0b9af9cacb9aebfb5aabdb0bfaeb9b9b7f2bfb3b1">[email&#160;protected]</span></a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><p>© 2025 Percival Creek Brewing, Cider &amp; Distilling · Must be 21+ to purchase · Please drink responsibly.</p><div class="footer-social"><a href="https://www.instagram.com/percivalcreekwa/?hl=en" target="_blank" class="social-link">IG</a><a href="https://www.facebook.com/" target="_blank" class="social-link">FB</a></div></div>
+</footer>
+<script>
+document.querySelectorAll('.reveal').forEach(function(el) {
+  var io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  io.observe(el);
+});
+</script>
+</body>
+</html>
