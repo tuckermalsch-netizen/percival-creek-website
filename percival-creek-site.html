@@ -1377,12 +1377,13 @@ document.addEventListener('click', function(e) {
     <h2>Are You 21 or Older?</h2>
     <p>Percival Creek products are intended for adults 21 and over. Please confirm your age to enter.</p>
     <div class="age-gate-btns">
-      <button class="age-yes" onclick="document.getElementById('ageGate').style.display='none'">Yes, I'm 21+</button>
+      <button class="age-yes" onclick="sessionStorage.setItem('ageVerified','1');document.getElementById('ageGate').style.display='none'">Yes, I'm 21+</button>
       <button class="age-no">Not Yet</button>
     </div>
     <p class="age-fine">By entering, you agree to our Terms & Conditions. Please drink responsibly.</p>
   </div>
 </div>
+<script>if(sessionStorage.getItem('ageVerified'))document.getElementById('ageGate').style.display='none';</script>
 
 <!-- ANNOUNCEMENT BAR -->
 <div class="announce">
