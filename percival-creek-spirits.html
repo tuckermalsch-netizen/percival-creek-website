@@ -42,11 +42,11 @@ nav { position:sticky; top:0; z-index:100; background:var(--white); border-botto
 .collection-hero-bg {
   position:absolute; inset:0;
   background: linear-gradient(155deg, rgba(42,58,63,0.88) 0%, rgba(30,58,34,0.45) 45%, rgba(61,43,26,0.85) 100%),
-    url('new_copper_wide.jpg') center 30%/cover no-repeat;
+    url('new_copper_wide.jpg') 75% 30%/cover no-repeat;
   animation: hZoom 25s ease-in-out infinite alternate;
 }
 @keyframes hZoom { from{transform:scale(1)} to{transform:scale(1.04)} }
-.collection-hero::after { content:''; position:absolute; bottom:-2px; left:0; right:0; height:100px; background:var(--white); clip-path:polygon(0 60%, 100% 0, 100% 100%, 0 100%); }
+.collection-hero::after { display:none; }
 .collection-hero-content { position:relative; z-index:2; padding:0 80px; animation:fadeUp 1s ease both; }
 @keyframes fadeUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
 .breadcrumb { font-size:11px; letter-spacing:0.25em; text-transform:uppercase; color:var(--gold-light); font-weight:600; margin-bottom:20px; opacity:0.8; }
