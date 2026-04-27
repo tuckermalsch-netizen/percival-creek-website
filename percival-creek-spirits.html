@@ -82,7 +82,7 @@ nav { position:sticky; top:0; z-index:100; background:var(--white); border-botto
 .product-card { background:var(--white); border:1px solid var(--cream-dark); transition:transform 0.3s,box-shadow 0.3s; position:relative; overflow:hidden; }
 .product-card:hover { transform:translateY(-6px); box-shadow:0 20px 48px rgba(42,58,63,0.15); border-color:transparent; }
 .product-img { height:380px; overflow:hidden; position:relative; background:var(--steel); display:flex; align-items:center; justify-content:center; }
-.product-img img { width:100%; height:100%; object-fit:cover; object-position:center 15%; transition:transform 0.5s; }
+.product-img img { width:100%; height:100%; object-fit:contain; padding:16px; transition:transform 0.5s; }
 .product-card:hover .product-img img { transform:scale(1.04); }
 .product-tag { position:absolute; top:14px; left:14px; font-size:9px; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; padding:5px 10px; z-index:2; }
 .product-tag.gin { background:var(--forest); color:var(--gold-light); }
